@@ -1,0 +1,75 @@
+---
+import Reveal from "./Reveal.astro";
+import { projects } from "../data/projects";
+---
+
+<Reveal id="projects" class="mx-auto max-w-[1200px] px-5 py-12 md:px-16">
+  <h2 class="mb-12 font-display text-4xl font-semibold tracking-[-0.02em]">
+    Selected Projects
+  </h2>
+
+  <div class="grid grid-cols-1 gap-6 md:grid-cols-12 md:auto-rows-[380px]">
+    {
+      projects.map((project) => {
+        const spanClass =
+          project.size === "large"
+            ? "md:col-span-7"
+            : project.size === "medium"
+              ? "md:col-span-5"
+              : "md:col-span-12";
+
+        return (
+          <article
+            class={`glass group relative overflow-hidden rounded-2xl transition duration-500 hover:scale-[1.02] ${spanClass}`}
+          >
+            <div class="absolute inset-0 z-10 bg-gradient-to-t from-background via-background/50 to-transparent" />
+            <img
+              src={project.image}
+              alt={`${project.title} preview`}
+              class="absolute inset-0 h-full w-full object-cover opacity-70 transition duration-1000 group-hover:scale-110"
+            />
+
+            <div class="absolute bottom-0 left-0 z-20 w-full p-8">
+              <div class="mb-4 flex flex-wrap gap-2">
+                {project.stack.map((item) => (
+                  <span class="tech-chip rounded-full px-3 py-1 text-xs">
+                    {item}
+                  </span>
+                ))}
+              </div>
+              <h3 class="mb-2 font-display text-3xl font-semibold text-on-surface">
+                {project.title}
+              </h3>
+              <p class="mb-6 max-w-xl text-on-surface-variant">
+                {project.description}
+              </p>
+
+              <div class="flex gap-4">
+                {project.github && (
+                  <a
+                    class="inline-flex items-center gap-2 text-primary transition hover:gap-4"
+                    href={project.github}
+                    target="_blank"
+                  >
+                    GitHub{" "}
+                    <span class="material-symbols-outlined">north_east</span>
+                  </a>
+                )}
+                {project.live && (
+                  <a
+                    class="inline-flex items-center gap-2 text-primary transition hover:gap-4"
+                    href={project.live}
+                    target="_blank"
+                  >
+                    Live Demo{" "}
+                    <span class="material-symbols-outlined">north_east</span>
+                  </a>
+                )}
+              </div>
+            </div>
+          </article>
+        );
+      })
+    }
+  </div>
+</Reveal>

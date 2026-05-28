@@ -1,0 +1,38 @@
+---
+import Reveal from "./Reveal.astro";
+import { timeline } from "../data/timeline";
+---
+
+<Reveal id="timeline" class="mx-auto max-w-[1200px] px-5 py-12 md:px-16">
+  <h2
+    class="mb-12 text-center font-display text-4xl font-semibold tracking-[-0.02em]"
+  >
+    Professional Journey
+  </h2>
+
+  <div
+    class="relative space-y-12 before:absolute before:inset-0 before:ml-5 before:h-full before:w-0.5 before:-translate-x-px before:bg-gradient-to-b before:from-transparent before:via-outline-variant/50 before:to-transparent md:before:mx-auto md:before:translate-x-0"
+  >
+    {
+      timeline.map((item, index) => (
+        <div
+          class={`group relative flex items-center justify-between md:justify-normal ${index % 2 === 0 ? "md:flex-row-reverse" : ""}`}
+        >
+          <div class="z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-outline-variant bg-background text-primary transition group-hover:border-primary md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">
+            <span class="material-symbols-outlined text-[16px]">
+              {item.icon}
+            </span>
+          </div>
+
+          <article class="glass w-[calc(100%-4rem)] rounded-2xl p-6 transition hover:border-primary/30 md:w-[calc(50%-2.5rem)]">
+            <div class="mb-1 flex items-center justify-between gap-2">
+              <h3 class="font-bold text-on-surface">{item.title}</h3>
+              <time class="font-mono text-sm text-primary">{item.year}</time>
+            </div>
+            <p class="text-on-surface-variant">{item.description}</p>
+          </article>
+        </div>
+      ))
+    }
+  </div>
+</Reveal>

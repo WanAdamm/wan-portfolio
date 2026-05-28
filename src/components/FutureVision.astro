@@ -1,0 +1,50 @@
+---
+import Reveal from "./Reveal.astro";
+
+const pillars = [
+  { icon: "auto_awesome", label: "Ethical AI" },
+  { icon: "hub", label: "Scalable Architecture" },
+  { icon: "speed", label: "High Performance" },
+];
+---
+
+<Reveal class="relative overflow-hidden py-12">
+  <div class="mx-auto max-w-[1200px] px-5 text-center md:px-16">
+    <div
+      class="glass relative overflow-hidden rounded-[2rem] border border-primary/20 p-8 transition duration-700 hover:border-primary/40 md:p-16"
+    >
+      <div
+        class="absolute inset-0 -translate-y-1/2 rounded-full bg-primary/5 blur-[120px]"
+      >
+      </div>
+
+      <h2
+        class="relative mb-2 font-display text-4xl font-semibold tracking-[-0.02em] text-on-surface"
+      >
+        Building Systems Beyond the Classroom
+      </h2>
+      <p
+        class="relative mx-auto mb-12 max-w-3xl text-lg text-on-surface-variant"
+      >
+        I want to build technology that is not just smart, but useful in real
+        environments. My focus is production-grade AI, scalable software, and
+        engineering systems that solve practical bottlenecks.
+      </p>
+
+      <div
+        class="relative mx-auto grid max-w-4xl grid-cols-1 gap-6 md:grid-cols-3"
+      >
+        {
+          pillars.map((pillar) => (
+            <div class="group flex flex-col items-center">
+              <span class="material-symbols-outlined mb-2 text-4xl text-primary transition duration-500 group-hover:scale-125">
+                {pillar.icon}
+              </span>
+              <span class="font-mono text-on-surface">{pillar.label}</span>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</Reveal>

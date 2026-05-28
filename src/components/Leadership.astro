@@ -1,0 +1,58 @@
+---
+import Reveal from "./Reveal.astro";
+
+const experiences = [
+  {
+    title: "MPDIK Leadership",
+    icon: "account_balance",
+    description:
+      "Led division-level operations, logistics, budgeting, stakeholder communication, and junior committee mentoring across university-scale programs.",
+    tags: "PROJECT LEADERSHIP • RESOURCE MANAGEMENT",
+  },
+  {
+    title: "Computer Science Society",
+    icon: "terminal",
+    description:
+      "Supported flagship events including VHACK and PIXEL, covering logistics, AV systems, venue operations, and technical division contributions.",
+    tags: "TECHNICAL OPERATIONS • EVENT EXECUTION",
+  },
+];
+---
+
+<Reveal id="leadership" class="bg-surface-container-low/30 py-12">
+  <div class="mx-auto max-w-[1200px] px-5 md:px-16">
+    <div
+      class="mb-12 flex flex-col justify-between gap-4 md:flex-row md:items-end"
+    >
+      <div>
+        <h2 class="font-display text-4xl font-semibold tracking-[-0.02em]">
+          Operational Impact
+        </h2>
+        <p class="text-lg text-on-surface-variant">
+          Engineering culture through leadership.
+        </p>
+      </div>
+      <span
+        class="rounded-full bg-primary/10 px-4 py-2 font-mono text-sm text-primary"
+        >COMMUNITY & GROWTH</span
+      >
+    </div>
+
+    <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+      {
+        experiences.map((item) => (
+          <article class="glass rounded-2xl p-8 transition hover:-translate-y-1 hover:border-primary">
+            <div class="mb-6 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
+              <span class="material-symbols-outlined">{item.icon}</span>
+            </div>
+            <h3 class="mb-2 font-display text-2xl font-semibold">
+              {item.title}
+            </h3>
+            <p class="mb-4 text-on-surface-variant">{item.description}</p>
+            <p class="font-mono text-xs text-primary">{item.tags}</p>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</Reveal>

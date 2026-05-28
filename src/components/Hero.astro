@@ -1,0 +1,79 @@
+---
+import ParticleCanvas from "./react/ParticleCanvas";
+
+const techBadges = [
+  { label: "Python", icon: "code", delay: "animate-float" },
+  { label: "React", icon: "javascript", delay: "animate-float-delayed" },
+  { label: "Flutter", icon: "smartphone", delay: "animate-float-more-delayed" },
+  { label: "Docker", icon: "view_in_ar", delay: "animate-float" },
+  { label: "AI", icon: "psychology", delay: "animate-float-delayed" },
+];
+---
+
+<section
+  class="hero-glow relative flex min-h-screen flex-col items-center justify-center overflow-hidden pt-16"
+>
+  <ParticleCanvas client:load />
+
+  <div class="relative z-10 mx-auto max-w-4xl px-5 text-center">
+    <div
+      class="glass mb-6 inline-flex items-center gap-2 rounded-full px-3 py-1"
+    >
+      <span class="h-2 w-2 animate-pulse rounded-full bg-primary"></span>
+      <span class="font-mono text-sm uppercase tracking-widest text-primary"
+        >Available for Internships</span
+      >
+    </div>
+
+    <h1
+      class="mb-2 font-display text-5xl font-bold tracking-[-0.04em] text-on-surface md:text-[64px] md:leading-[1.1]"
+    >
+      Wan Muhammad Adam
+    </h1>
+
+    <p
+      class="mx-auto mb-12 max-w-2xl font-display text-2xl text-on-surface-variant"
+    >
+      Computer Science Student <span class="text-primary">|</span> Intelligent Computing
+      <span class="text-primary">|</span> AI & Full Stack Development
+    </p>
+
+    <div class="mb-12 flex flex-wrap justify-center gap-3">
+      {
+        techBadges.map((badge) => (
+          <div
+            class={`tech-chip flex items-center gap-2 rounded-xl px-4 py-2 ${badge.delay}`}
+          >
+            <span class="material-symbols-outlined text-[18px]">
+              {badge.icon}
+            </span>
+            <span class="font-mono">{badge.label}</span>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="flex flex-col items-center justify-center gap-4 sm:flex-row">
+      <a
+        href="#projects"
+        class="flex w-full items-center justify-center gap-2 rounded-full bg-on-surface px-8 py-4 font-bold text-background transition hover:-translate-y-0.5 hover:opacity-90 sm:w-auto"
+      >
+        View Projects <span class="material-symbols-outlined"
+          >arrow_forward</span
+        >
+      </a>
+      <a
+        href="#contact"
+        class="flex w-full items-center justify-center gap-2 rounded-full border border-outline-variant bg-transparent px-8 py-4 font-bold text-on-surface transition hover:-translate-y-0.5 hover:border-on-surface sm:w-auto"
+      >
+        Contact Me
+      </a>
+    </div>
+  </div>
+
+  <div
+    class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce opacity-50"
+  >
+    <span class="material-symbols-outlined text-2xl">expand_more</span>
+  </div>
+</section>
