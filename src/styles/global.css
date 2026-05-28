@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+:root {
+  --background: #131313;
+  --foreground: #e5e2e1;
+
+  --surface: #131313;
+  --surface-lowest: #0e0e0e;
+  --surface-low: #1c1b1b;
+  --surface-card: #201f1f;
+  --surface-card-hover: #2a2a2a;
+  --surface-bright: #3a3939;
+
+  --primary: #adc6ff;
+  --primary-strong: #4d8eff;
+  --secondary: #d0bcff;
+  --tertiary: #ffb786;
+
+  --text-main: #e5e2e1;
+  --text-muted: #c2c6d6;
+  --border: #424754;
+  --border-soft: #2a2a2a;
+
+  --error: #ffb4ab;
+
+  --font-display: "Geist", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  --container-max: 1200px;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: var(--on-primary, #002e6a);
+  border-radius: 0.25rem;
+  padding: 0.75rem 1rem;
+  font-weight: 600;
+}
+
+.card {
+  background: var(--surface-card);
+  border: 1px solid var(--border-soft);
+  border-radius: 0.75rem;
+}
+
+.card:hover {
+  border-color: color-mix(in srgb, var(--primary) 30%, transparent);
+}
