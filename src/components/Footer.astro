@@ -1,3 +1,7 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
 <footer
   class="border-t border-[var(--outline-variant)]/40 bg-[var(--background)]"
 >
@@ -37,7 +41,7 @@
       class="mt-8 flex flex-col gap-4 border-t border-[var(--outline-variant)]/40 pt-6 md:flex-row md:items-center md:justify-between"
     >
       <p class="font-mono text-xs text-[var(--on-surface-variant)]">
-        © 2026 Wan Muhammad Adam. Built with Astro, React, and Tailwind CSS.
+        © {currentYear} Wan Muhammad Adam. Built with Astro, React, and Tailwind CSS.
       </p>
 
       <div

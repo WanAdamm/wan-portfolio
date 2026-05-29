@@ -1,5 +1,7 @@
 ---
 import Reveal from "./Reveal.astro";
+
+const base = import.meta.env.BASE_URL;
 ---
 
 <Reveal id="contact" class="mx-auto max-w-[1200px] px-5 py-12 md:px-16">
@@ -30,13 +32,20 @@ import Reveal from "./Reveal.astro";
           <a
             class="glass flex h-12 w-12 items-center justify-center rounded-full transition hover:-translate-y-1 hover:border-primary"
             href="https://github.com/WanAdamm"
-            target="_blank">GH</a
+            target="_blank"
+            rel="noopener noreferrer"
           >
+            <img src={`${base}icon/github-logo.svg`} alt="GH" class="h-6 w-6 object-contain" />
+          </a>
+
           <a
             class="glass flex h-12 w-12 items-center justify-center rounded-full transition hover:-translate-y-1 hover:border-primary"
             href="https://www.linkedin.com/in/wan-muhammad-adam-74409427a/"
-            target="_blank">IN</a
+            target="_blank"
+            rel="noopener noreferrer"
           >
+            <img src={`${base}icon/linkedin-logo.png`}  alt="IN" class="h-6 w-6 object-contain" />
+          </a>
         </div>
       </div>
     </div>
