@@ -7,18 +7,25 @@ const { id, class: className = "" } = Astro.props;
 </section>
 
 <script>
-  const revealObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("active");
-        }
-      });
-    },
-    { threshold: 0.15 },
-  );
+  // Use a single observer, run after DOM is ready
+  document.addEventListener("DOMContentLoaded", () => {
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("active");
+            revealObserver.unobserve(entry.target); // stop watching after reveal
+          }
+        });
+      },
+      {
+        threshold: 0.1, // lower threshold — triggers at 10% visible
+        rootMargin: "0px 0px -50px 0px",
+      },
+    );
 
-  document
-    .querySelectorAll(".reveal")
-    .forEach((el) => revealObserver.observe(el));
+    document
+      .querySelectorAll(".reveal")
+      .forEach((el) => revealObserver.observe(el));
+  });
 </script>
