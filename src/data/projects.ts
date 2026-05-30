@@ -13,7 +13,7 @@ export const projects = [
     description:
       "A responsive tourism web app optimized for desktop, tablet, and mobile experiences.",
     stack: ["React", "Vite", "Tailwind"],
-    image: "/images/visit-penang.jpg",
+    image: "/images/visit-penang.png",
     size: "medium",
     live: "https://visit-penang-sepia.vercel.app/",
   },

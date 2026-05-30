@@ -25,22 +25,19 @@ import {
         >
           <span class="material-symbols-outlined text-[16px]">language</span> Languages
         </h3>
-        <div class="space-y-6">
+        <div class="space-y-4">
           {
             languageSkills.map((skill) => (
-              <div>
-                <div class="mb-2 flex justify-between">
-                  <span>{skill.name}</span>
-                  <span class="font-mono text-on-surface-variant">
-                    {skill.level}%
+              <div class="rounded-2xl border border-outline-variant/30 bg-surface-container/40 p-4 transition duration-300 hover:border-primary/40 hover:bg-surface-container">
+                <div class="mb-2 flex items-center justify-between">
+                  <span class="font-semibold text-on-surface">
+                    {skill.name}
                   </span>
                 </div>
-                <div class="h-1 overflow-hidden rounded-full bg-outline-variant/30">
-                  <div
-                    class="h-full bg-primary"
-                    style={`width: ${skill.level}%`}
-                  />
-                </div>
+
+                <p class="text-sm leading-relaxed text-on-surface-variant">
+                  {skill.appliedIn}
+                </p>
               </div>
             ))
           }
