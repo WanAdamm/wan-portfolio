@@ -24,49 +24,59 @@ const base = import.meta.env.BASE_URL.endsWith("/")
 
         return (
           <article
-            class={`glass group relative overflow-hidden rounded-2xl transition duration-500 hover:scale-[1.02] ${spanClass}`}
+            class={`glass group relative h-[320px] overflow-hidden rounded-2xl transition duration-500 hover:scale-[1.02] md:h-auto ${spanClass}`}
           >
-            <div class="absolute inset-0 z-10 bg-gradient-to-t from-background via-background/50 to-transparent" />
+            <div class="absolute inset-0 z-10 bg-gradient-to-t from-background via-background/60 to-transparent" />
+
             <img
               src={`${base}${project.image}`}
               alt={`${project.title} preview`}
               class="absolute inset-0 h-full w-full object-cover opacity-70 transition duration-1000 group-hover:scale-110"
             />
 
-            <div class="absolute bottom-0 left-0 z-20 w-full p-8">
-              <div class="mb-4 flex flex-wrap gap-2">
+            <div class="absolute bottom-0 left-0 z-20 w-full p-4 md:p-8">
+              <div class="mb-2 flex flex-wrap gap-1.5 md:mb-4 md:gap-2">
                 {project.stack.map((item) => (
-                  <span class="tech-chip rounded-full px-3 py-1 text-xs">
+                  <span class="tech-chip rounded-full px-2.5 py-0.5 text-xs md:px-3 md:py-1">
                     {item}
                   </span>
                 ))}
               </div>
-              <h3 class="mb-2 font-display text-3xl font-semibold text-on-surface">
+
+              <h3 class="mb-1 font-display text-xl font-semibold text-on-surface md:mb-2 md:text-3xl">
                 {project.title}
               </h3>
-              <p class="mb-6 max-w-xl text-on-surface-variant">
+
+              <p class="mb-3 max-w-xl line-clamp-2 text-sm text-on-surface-variant md:mb-6 md:line-clamp-none md:text-base">
                 {project.description}
               </p>
 
               <div class="flex gap-4">
                 {project.github && (
                   <a
-                    class="inline-flex items-center gap-2 text-primary transition hover:gap-4"
+                    class="inline-flex items-center gap-2 text-sm text-primary transition hover:gap-4 md:text-base"
                     href={project.github}
                     target="_blank"
+                    rel="noopener noreferrer"
                   >
-                    GitHub{" "}
-                    <span class="material-symbols-outlined">north_east</span>
+                    GitHub
+                    <span class="material-symbols-outlined text-sm md:text-base">
+                      north_east
+                    </span>
                   </a>
                 )}
+
                 {project.live && (
                   <a
-                    class="inline-flex items-center gap-2 text-primary transition hover:gap-4"
+                    class="inline-flex items-center gap-2 text-sm text-primary transition hover:gap-4 md:text-base"
                     href={project.live}
                     target="_blank"
+                    rel="noopener noreferrer"
                   >
-                    Live Demo{" "}
-                    <span class="material-symbols-outlined">north_east</span>
+                    Live Demo
+                    <span class="material-symbols-outlined text-sm md:text-base">
+                      north_east
+                    </span>
                   </a>
                 )}
               </div>
