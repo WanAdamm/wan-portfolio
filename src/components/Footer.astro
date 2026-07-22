@@ -1,69 +1,67 @@
 ---
+import { navigation, site } from "../data/site";
+
 const currentYear = new Date().getFullYear();
 ---
 
-<footer
-  class="border-t border-[var(--outline-variant)]/40 bg-[var(--background)]"
->
+<footer class="border-t border-outline-variant/40 bg-background">
   <div class="mx-auto max-w-[1200px] px-5 py-10 md:px-16">
     <div
       class="flex flex-col gap-8 md:flex-row md:items-center md:justify-between"
     >
       <div>
-        <p class="font-display text-xl font-bold text-[var(--on-surface)]">
-          Wan Muhammad Adam
+        <p class="font-display text-xl font-bold text-on-surface">
+          {site.name}
         </p>
-        <p class="mt-2 max-w-md text-sm text-[var(--on-surface-variant)]">
+        <p class="mt-2 max-w-md text-sm text-on-surface-variant">
           Computer Science student focused on Intelligent Computing, AI, and
           full-stack development.
         </p>
       </div>
 
       <nav
-        class="flex flex-wrap gap-5 font-mono text-sm text-[var(--on-surface-variant)]"
+        class="flex flex-wrap gap-5 font-mono text-sm text-on-surface-variant"
+        aria-label="Footer navigation"
       >
-        <a href="#projects" class="transition hover:text-[var(--primary)]"
-          >Projects</a
-        >
-        <a href="#skills" class="transition hover:text-[var(--primary)]"
-          >Skills</a
-        >
-        <a href="#leadership" class="transition hover:text-[var(--primary)]"
-          >Leadership</a
-        >
-        <a href="#contact" class="transition hover:text-[var(--primary)]"
-          >Contact</a
-        >
+        {
+          navigation.map((link) => (
+            <a href={link.href} class="transition hover:text-primary">
+              {link.label}
+            </a>
+          ))
+        }
       </nav>
     </div>
 
     <div
-      class="mt-8 flex flex-col gap-4 border-t border-[var(--outline-variant)]/40 pt-6 md:flex-row md:items-center md:justify-between"
+      class="mt-8 flex flex-col gap-4 border-t border-outline-variant/40 pt-6 md:flex-row md:items-center md:justify-between"
     >
-      <p class="font-mono text-xs text-[var(--on-surface-variant)]">
-        © {currentYear} Wan Muhammad Adam. Built with Astro, React, and Tailwind CSS.
+      <p class="font-mono text-xs text-on-surface-variant">
+        © {currentYear} {site.name}. Built with Astro and Tailwind CSS.
       </p>
 
       <div
-        class="flex gap-4 font-mono text-xs text-[var(--on-surface-variant)]"
+        class="flex gap-4 font-mono text-xs text-on-surface-variant"
       >
         <a
-          href="https://github.com/WanAdamm"
+          href={site.github}
           target="_blank"
-          class="transition hover:text-[var(--primary)]"
+          rel="noopener noreferrer"
+          class="transition hover:text-primary"
         >
           GitHub
         </a>
         <a
-          href="https://www.linkedin.com/in/wan-muhammad-adam-74409427a/"
+          href={site.linkedin}
           target="_blank"
-          class="transition hover:text-[var(--primary)]"
+          rel="noopener noreferrer"
+          class="transition hover:text-primary"
         >
           LinkedIn
         </a>
         <a
-          href="mailto:wanadamworkmail@gmail.com"
-          class="transition hover:text-[var(--primary)]"
+          href={`mailto:${site.email}`}
+          class="transition hover:text-primary"
         >
           Email
         </a>

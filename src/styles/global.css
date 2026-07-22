@@ -23,7 +23,9 @@
 }
 
 html {
+  color-scheme: dark;
   scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
 }
 
 body {
@@ -31,6 +33,17 @@ body {
   background: #0a0a0a;
   color: #e5e2e1;
   font-family: var(--font-body);
+  overflow-x: clip;
+  text-rendering: optimizeLegibility;
+}
+
+section[id] {
+  scroll-margin-top: 5rem;
+}
+
+:where(a, button, summary, input, textarea):focus-visible {
+  outline: 2px solid #adc6ff;
+  outline-offset: 3px;
 }
 
 ::selection {
@@ -55,7 +68,11 @@ body {
   border: 1px solid #262626;
   background: #111111;
   color: #94a3b8;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    color 0.3s ease;
   position: relative;
   overflow: hidden;
 }
@@ -67,14 +84,19 @@ body {
 }
 
 .reveal {
-  opacity: 0;
-  transform: translateY(120px);
-  transition:
-    opacity 1.2s ease,
-    transform 1.2s ease;
+  opacity: 1;
+  transform: none;
 }
 
-.reveal.active {
+.js .reveal {
+  opacity: 0;
+  transform: translateY(64px);
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s ease;
+}
+
+.js .reveal.active {
   opacity: 1;
   transform: translateY(0);
 }
@@ -106,15 +128,16 @@ body {
     scroll-behavior: auto;
   }
 
-  .reveal {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .js .reveal {
     opacity: 1;
     transform: none;
     transition: none;
-  }
-
-  .animate-float,
-  .animate-float-delayed,
-  .animate-float-more-delayed {
-    animation: none;
   }
 }

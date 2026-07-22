@@ -37,7 +37,10 @@ const pillars = [
         {
           pillars.map((pillar) => (
             <div class="group flex flex-col items-center">
-              <span class="material-symbols-outlined mb-2 text-4xl text-primary transition duration-500 group-hover:scale-125">
+              <span
+                class="material-symbols-outlined mb-2 text-4xl text-primary transition duration-500 group-hover:scale-125"
+                aria-hidden="true"
+              >
                 {pillar.icon}
               </span>
               <span class="font-mono text-on-surface">{pillar.label}</span>

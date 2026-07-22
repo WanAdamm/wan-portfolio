@@ -1,6 +1,6 @@
 ---
 import Reveal from "./Reveal.astro";
-import InteractiveGlow from "./react/InteractiveGlow";
+import GlowCard from "./GlowCard.astro";
 import {
   languageSkills,
   aiDataSkills,
@@ -18,17 +18,19 @@ import {
     </h2>
 
     <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
-      <!-- Category: Programming Language -->
-      <InteractiveGlow client:load className="glass rounded-2xl p-6">
+      <GlowCard class="glass rounded-2xl p-6">
         <h3
           class="mb-6 flex items-center gap-2 font-mono text-sm uppercase tracking-widest text-primary"
         >
-          <span class="material-symbols-outlined text-[16px]">language</span> Languages
+          <span
+            class="material-symbols-outlined text-[16px]"
+            aria-hidden="true">language</span
+          > Languages
         </h3>
         <div class="space-y-4">
           {
             languageSkills.map((skill) => (
-              <div class="rounded-2xl border border-outline-variant/30 bg-surface-container/40 p-4 transition duration-300 hover:border-primary/40 hover:bg-surface-container">
+              <div class="rounded-2xl border border-outline-variant/30 bg-surface-container-low/40 p-4 transition duration-300 hover:border-primary/40 hover:bg-surface-container-low">
                 <div class="mb-2 flex items-center justify-between">
                   <span class="font-semibold text-on-surface">
                     {skill.name}
@@ -42,14 +44,16 @@ import {
             ))
           }
         </div>
-      </InteractiveGlow>
+      </GlowCard>
 
-      <!-- Category: AI Skills -->
-      <InteractiveGlow client:load className="glass rounded-2xl p-6">
+      <GlowCard class="glass rounded-2xl p-6">
         <h3
           class="mb-6 flex items-center gap-2 font-mono text-sm uppercase tracking-widest text-primary"
         >
-          <span class="material-symbols-outlined text-[16px]">data_object</span> AI
+          <span
+            class="material-symbols-outlined text-[16px]"
+            aria-hidden="true">data_object</span
+          > AI
           & Data
         </h3>
         <div class="flex flex-wrap gap-2">
@@ -61,14 +65,16 @@ import {
             ))
           }
         </div>
-      </InteractiveGlow>
+      </GlowCard>
 
-      <!-- Category: Frontend -->
-      <InteractiveGlow client:load className="glass rounded-2xl p-6">
+      <GlowCard class="glass rounded-2xl p-6">
         <h3
           class="mb-6 flex items-center gap-2 font-mono text-sm uppercase tracking-widest text-primary"
         >
-          <span class="material-symbols-outlined text-[16px]">brush</span>
+          <span
+            class="material-symbols-outlined text-[16px]"
+            aria-hidden="true">brush</span
+          >
           Frontend
         </h3>
 
@@ -82,14 +88,16 @@ import {
             ))
           }
         </div>
-      </InteractiveGlow>
+      </GlowCard>
 
-      <!-- Category: DevOps -->
-      <InteractiveGlow client:load className="glass rounded-2xl p-6">
+      <GlowCard class="glass rounded-2xl p-6">
         <h3
           class="mb-6 flex items-center gap-2 font-mono text-sm uppercase tracking-widest text-primary"
         >
-          <span class="material-symbols-outlined text-[16px]">
+          <span
+            class="material-symbols-outlined text-[16px]"
+            aria-hidden="true"
+          >
             settings_system_daydream
           </span>
           Cloud &amp; DevOps
@@ -100,14 +108,17 @@ import {
             devopsSkills.map((skill) => (
               <div class="flex items-center justify-between rounded-lg border border-outline-variant/10 bg-background/50 p-3">
                 <span>{skill}</span>
-                <span class="material-symbols-outlined text-primary">
+                <span
+                  class="material-symbols-outlined text-primary"
+                  aria-hidden="true"
+                >
                   check_circle
                 </span>
               </div>
             ))
           }
         </div>
-      </InteractiveGlow>
+      </GlowCard>
     </div>
   </div>
 </Reveal>

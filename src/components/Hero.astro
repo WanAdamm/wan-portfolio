@@ -1,5 +1,5 @@
 ---
-import ParticleCanvas from "./react/ParticleCanvas";
+import ParticleField from "./ParticleField.astro";
 
 const techBadges = [
   { label: "Python", icon: "code", delay: "animate-float" },
@@ -11,15 +11,19 @@ const techBadges = [
 ---
 
 <section
-  class="hero-glow relative flex min-h-screen flex-col items-center justify-center overflow-hidden pt-16"
+  id="top"
+  class="hero-glow relative flex min-h-svh flex-col items-center justify-center overflow-hidden pt-16"
 >
-  <ParticleCanvas client:load />
+  <ParticleField />
 
   <div class="relative z-10 mx-auto max-w-4xl px-5 text-center">
     <div
       class="glass mb-6 inline-flex items-center gap-2 rounded-full px-3 py-1"
     >
-      <span class="h-2 w-2 animate-pulse rounded-full bg-primary"></span>
+      <span
+        class="h-2 w-2 animate-pulse rounded-full bg-primary"
+        aria-hidden="true"></span
+      >
       <span class="font-mono text-sm uppercase tracking-widest text-primary"
         >Available for work starting August 2027</span
       >
@@ -44,7 +48,10 @@ const techBadges = [
           <div
             class={`tech-chip flex items-center gap-2 rounded-xl px-4 py-2 ${badge.delay}`}
           >
-            <span class="material-symbols-outlined text-[18px]">
+            <span
+              class="material-symbols-outlined text-[18px]"
+              aria-hidden="true"
+            >
               {badge.icon}
             </span>
             <span class="font-mono">{badge.label}</span>
@@ -58,7 +65,7 @@ const techBadges = [
         href="#projects"
         class="flex w-full items-center justify-center gap-2 rounded-full bg-on-surface px-8 py-4 font-bold text-background transition hover:-translate-y-0.5 hover:opacity-90 sm:w-auto"
       >
-        View Projects <span class="material-symbols-outlined"
+        View Projects <span class="material-symbols-outlined" aria-hidden="true"
           >arrow_forward</span
         >
       </a>
@@ -74,6 +81,8 @@ const techBadges = [
   <div
     class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce opacity-50"
   >
-    <span class="material-symbols-outlined text-2xl">expand_more</span>
+    <span class="material-symbols-outlined text-2xl" aria-hidden="true"
+      >expand_more</span
+    >
   </div>
 </section>

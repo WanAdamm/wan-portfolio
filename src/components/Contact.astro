@@ -1,9 +1,6 @@
 ---
 import Reveal from "./Reveal.astro";
-
-const base = import.meta.env.BASE_URL.endsWith("/")
-  ? import.meta.env.BASE_URL
-  : `${import.meta.env.BASE_URL}/`;
+import { assetPath, site } from "../data/site";
 ---
 
 <Reveal id="contact" class="mx-auto max-w-[1200px] px-5 py-12 md:px-16">
@@ -19,40 +16,64 @@ const base = import.meta.env.BASE_URL.endsWith("/")
 
       <div class="space-y-4">
         <a
-          class="group flex items-center gap-4 rounded-xl border border-outline-variant/10 p-4 transition hover:bg-surface-container-high/20"
-          href="mailto:wanadamworkmail@gmail.com"
+          class="group flex items-center gap-4 rounded-xl border border-outline-variant/10 p-4 transition hover:bg-surface-container-low/40"
+          href={`mailto:${site.email}`}
         >
           <div
             class="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary transition group-hover:scale-110"
           >
-            <span class="material-symbols-outlined">mail</span>
+            <span class="material-symbols-outlined" aria-hidden="true"
+              >mail</span
+            >
           </div>
-          <span>wanadamworkmail@gmail.com</span>
+          <span class="min-w-0 break-all">{site.email}</span>
         </a>
 
         <div class="flex gap-4 pt-4">
           <a
             class="glass flex h-12 w-12 items-center justify-center rounded-full transition hover:-translate-y-1 hover:border-primary"
-            href="https://github.com/WanAdamm"
+            href={site.github}
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="GitHub profile"
           >
-            <img src={`${base}/icon/github-logo.svg`} alt="GH" class="h-6 w-6 object-contain" />
+            <img
+              src={assetPath("icon/github-logo.svg")}
+              alt=""
+              width="24"
+              height="24"
+              class="h-6 w-6 object-contain"
+            />
           </a>
 
           <a
             class="glass flex h-12 w-12 items-center justify-center rounded-full transition hover:-translate-y-1 hover:border-primary"
-            href="https://www.linkedin.com/in/wan-muhammad-adam-74409427a/"
+            href={site.linkedin}
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="LinkedIn profile"
           >
-            <img src={`${base}/icon/linkedin-logo.png`}  alt="IN" class="h-6 w-6 object-contain" />
+            <img
+              src={assetPath("icon/linkedin-logo.png")}
+              alt=""
+              width="24"
+              height="24"
+              class="h-6 w-6 object-contain"
+            />
           </a>
         </div>
       </div>
     </div>
 
-    <form class="glass space-y-4 rounded-2xl p-8" name="contact">
+    <form
+      class="glass space-y-4 rounded-2xl p-6 sm:p-8"
+      name="contact"
+      action={`mailto:${site.email}`}
+      method="post"
+      enctype="text/plain"
+      data-contact-form
+      data-mailto={`mailto:${site.email}`}
+    >
       <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
         <label class="space-y-2">
           <span class="font-mono text-xs uppercase text-on-surface-variant"
@@ -62,6 +83,9 @@ const base = import.meta.env.BASE_URL.endsWith("/")
             class="w-full rounded-lg border border-outline-variant bg-background/50 p-3 text-on-surface outline-none transition focus:border-primary focus:ring-1 focus:ring-primary"
             placeholder="John Doe"
             type="text"
+            name="fullName"
+            autocomplete="name"
+            required
           />
         </label>
         <label class="space-y-2">
@@ -72,6 +96,9 @@ const base = import.meta.env.BASE_URL.endsWith("/")
             class="w-full rounded-lg border border-outline-variant bg-background/50 p-3 text-on-surface outline-none transition focus:border-primary focus:ring-1 focus:ring-primary"
             placeholder="john@example.com"
             type="email"
+            name="email"
+            autocomplete="email"
+            required
           />
         </label>
       </div>
@@ -84,6 +111,9 @@ const base = import.meta.env.BASE_URL.endsWith("/")
           class="w-full rounded-lg border border-outline-variant bg-background/50 p-3 text-on-surface outline-none transition focus:border-primary focus:ring-1 focus:ring-primary"
           placeholder="Opportunity for Internship"
           type="text"
+          name="subject"
+          autocomplete="off"
+          required
         />
       </label>
 
@@ -94,15 +124,58 @@ const base = import.meta.env.BASE_URL.endsWith("/")
         <textarea
           class="w-full rounded-lg border border-outline-variant bg-background/50 p-3 text-on-surface outline-none transition focus:border-primary focus:ring-1 focus:ring-primary"
           placeholder="How can I help you?"
-          rows="4"></textarea>
+          rows="4"
+          name="message"
+          required></textarea>
       </label>
+
+      <p class="text-sm text-on-surface-variant">
+        Submitting opens a pre-filled draft in your default email app.
+      </p>
 
       <button
         class="w-full rounded-lg bg-on-surface py-4 font-bold text-background transition hover:opacity-90 active:scale-95"
         type="submit"
       >
-        Send Message
+        Open Email Draft
       </button>
+
+      <p
+        class="min-h-5 text-sm text-primary"
+        aria-live="polite"
+        data-contact-status
+      >
+      </p>
     </form>
   </div>
 </Reveal>
+
+<script>
+  document.querySelectorAll<HTMLFormElement>("[data-contact-form]").forEach(
+    (form) => {
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        if (!form.reportValidity()) return;
+
+        const formData = new FormData(form);
+        const value = (field: string) =>
+          String(formData.get(field) ?? "").trim();
+        const body = [
+          "Hi Wan,",
+          "",
+          value("message").replace(/\r\n|\r|\n/g, "\r\n"),
+          "",
+          `From: ${value("fullName")}`,
+          `Reply to: ${value("email")}`,
+        ].join("\r\n");
+        const status = form.querySelector<HTMLElement>(
+          "[data-contact-status]",
+        );
+
+        if (status) status.textContent = "Opening your email app...";
+        window.location.href = `${form.dataset.mailto}?subject=${encodeURIComponent(value("subject"))}&body=${encodeURIComponent(body)}`;
+      });
+    },
+  );
+</script>

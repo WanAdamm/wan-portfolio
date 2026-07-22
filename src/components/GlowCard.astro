@@ -1,0 +1,41 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className = "" } = Astro.props as Props;
+---
+
+<glow-card class:list={["group relative block overflow-hidden", className]}>
+  <div
+    class="pointer-events-none absolute inset-[-1px] z-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+    style="background: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgb(173 198 255 / 0.1), transparent 40%);"
+    aria-hidden="true"
+  >
+  </div>
+  <div class="relative z-10">
+    <slot />
+  </div>
+</glow-card>
+
+<script>
+  class GlowCardElement extends HTMLElement {
+    private handlePointerMove = (event: PointerEvent) => {
+      const bounds = this.getBoundingClientRect();
+      this.style.setProperty("--mouse-x", `${event.clientX - bounds.left}px`);
+      this.style.setProperty("--mouse-y", `${event.clientY - bounds.top}px`);
+    };
+
+    connectedCallback() {
+      this.addEventListener("pointermove", this.handlePointerMove);
+    }
+
+    disconnectedCallback() {
+      this.removeEventListener("pointermove", this.handlePointerMove);
+    }
+  }
+
+  if (!customElements.get("glow-card")) {
+    customElements.define("glow-card", GlowCardElement);
+  }
+</script>

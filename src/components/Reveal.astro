@@ -1,5 +1,10 @@
 ---
-const { id, class: className = "" } = Astro.props;
+interface Props {
+  id?: string;
+  class?: string;
+}
+
+const { id, class: className = "" } = Astro.props as Props;
 ---
 
 <section id={id} class={`reveal ${className}`}>
@@ -7,25 +12,36 @@ const { id, class: className = "" } = Astro.props;
 </section>
 
 <script>
-  // Use a single observer, run after DOM is ready
-  document.addEventListener("DOMContentLoaded", () => {
-    const revealObserver = new IntersectionObserver(
+  const elements = [...document.querySelectorAll<HTMLElement>(".reveal")];
+  const motionPreference = window.matchMedia(
+    "(prefers-reduced-motion: reduce)",
+  );
+
+  const showAll = () => elements.forEach((element) => element.classList.add("active"));
+
+  if (motionPreference.matches || !("IntersectionObserver" in window)) {
+    showAll();
+  } else {
+    const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("active");
-            revealObserver.unobserve(entry.target); // stop watching after reveal
-          }
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("active");
+          observer.unobserve(entry.target);
         });
       },
-      {
-        threshold: 0.1, // lower threshold — triggers at 10% visible
-        rootMargin: "0px 0px -50px 0px",
-      },
+      { threshold: 0.1, rootMargin: "0px 0px -48px" },
     );
 
-    document
-      .querySelectorAll(".reveal")
-      .forEach((el) => revealObserver.observe(el));
-  });
+    elements.forEach((element) => observer.observe(element));
+    motionPreference.addEventListener(
+      "change",
+      (event) => {
+        if (!event.matches) return;
+        observer.disconnect();
+        showAll();
+      },
+      { once: true },
+    );
+  }
 </script>

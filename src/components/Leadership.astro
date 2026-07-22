@@ -43,7 +43,9 @@ const experiences = [
         experiences.map((item) => (
           <article class="glass rounded-2xl p-8 transition hover:-translate-y-1 hover:border-primary">
             <div class="mb-6 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
-              <span class="material-symbols-outlined">{item.icon}</span>
+              <span class="material-symbols-outlined" aria-hidden="true"
+                >{item.icon}</span
+              >
             </div>
             <h3 class="mb-2 font-display text-2xl font-semibold">
               {item.title}
