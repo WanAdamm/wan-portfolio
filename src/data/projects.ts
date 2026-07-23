@@ -16,8 +16,8 @@ export const projects: readonly Project[] = [
   {
     title: "SeJahit",
     description:
-      "A full-stack tailoring service platform with item management, form handling, validation, and client-server integration.",
-    stack: ["React", "Vite", "Java Servlet", "PostgreSQL"],
+      "Architected an end-to-end tailoring service platform with a React/Vite client, Java Servlet REST backend on Tomcat, and PostgreSQL persistence. Implemented item workflows, validated form handling, routing, state management, and API integration.",
+    stack: ["React", "Vite", "Java Servlet", "Tomcat", "PostgreSQL"],
     image: "images/sejahit.jpg",
     imageWidth: 1918,
     imageHeight: 1079,
@@ -27,8 +27,8 @@ export const projects: readonly Project[] = [
   {
     title: "Visit Penang",
     description:
-      "A responsive tourism web app optimized for desktop, tablet, and mobile experiences.",
-    stack: ["React", "Vite", "Tailwind"],
+      "Engineered a responsive tourism discovery app with React, Vite, and reusable Tailwind CSS components, delivering adaptive navigation and content across desktop, tablet, and mobile.",
+    stack: ["React", "Vite", "Tailwind CSS"],
     image: "images/visit-penang.png",
     imageWidth: 1920,
     imageHeight: 1816,
@@ -38,8 +38,8 @@ export const projects: readonly Project[] = [
   {
     title: "DuitWise",
     description:
-      "A cross-platform finance application built with Flutter and modular widget-driven architecture.",
-    stack: ["Flutter", "Mobile", "State Management"],
+      "Built a cross-platform personal finance app in Flutter using modular, widget-driven architecture and structured state management for consistent Android and iOS behavior, maintainability, and feature growth.",
+    stack: ["Flutter", "Cross-Platform", "State Management"],
     image: "images/duitwise.jpg",
     imageWidth: 1208,
     imageHeight: 666,

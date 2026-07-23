@@ -5,9 +5,9 @@ export const assetPath = (path: string) =>
 
 export const site = {
   name: "Wan Muhammad Adam",
-  title: "Wan Muhammad Adam | AI & Full Stack Portfolio",
+  title: "Wan Muhammad Adam | Software Engineer Portfolio",
   description:
-    "Portfolio of Wan Muhammad Adam, Computer Science student focused on Intelligent Computing, AI, and full-stack development.",
+    "Wan Muhammad Adam is a final-year Computer Science student building data, automation, and full-stack systems. Open to full-time roles from August 2027.",
   email: "wanadamworkmail@gmail.com",
   github: "https://github.com/WanAdamm",
   linkedin: "https://www.linkedin.com/in/wan-muhammad-adam-74409427a/",
@@ -15,9 +15,9 @@ export const site = {
 } as const;
 
 export const navigation = [
+  { label: "Experience", href: "#experience" },
   { label: "Projects", href: "#projects" },
   { label: "Skills", href: "#skills" },
   { label: "Leadership", href: "#leadership" },
-  { label: "Timeline", href: "#timeline" },
   { label: "Contact", href: "#contact" },
 ] as const;

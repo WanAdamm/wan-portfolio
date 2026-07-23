@@ -1,38 +1,48 @@
 export const languageSkills = [
   {
     name: "Python",
-    appliedIn: "AI/ML · Automation · Data processing",
+    appliedIn: "Data science | Automation | Backend services",
   },
   {
     name: "Java",
-    appliedIn: "OOP · Java Servlet · Backend logic",
+    appliedIn: "OOP | Java Servlet | Backend services",
   },
   {
     name: "JavaScript",
-    appliedIn: "React · Vite · API integration",
+    appliedIn: "React | Node.js | API integration",
   },
   {
     name: "SQL",
-    appliedIn: "PostgreSQL · Queries · Schema design",
+    appliedIn: "PostgreSQL | SQL Server | Data modeling",
   },
 ];
 
-export const aiDataSkills = [
-  "FastAPI",
+export const dataAutomationSkills = [
+  "Pandas",
+  "Scikit-learn",
   "PyTorch",
   "TensorFlow",
-  "Scikit-Learn",
-  "Pandas",
-  "Matplotlib",
-  "Seaborn",
+  "Azure AI Foundry",
+  "Azure Speech Service",
 ];
 
-export const frontendSkills = [
+export const frameworkSkills = [
   "React.js",
-  "Vite",
-  "Astro",
+  "Node.js",
+  "Flask",
+  "Django",
+  "Java Servlet",
   "Flutter",
   "Tailwind CSS",
 ];
 
-export const devopsSkills = ["Docker", "Git", "Firebase", "Azure", "CI/CD"];
+export const toolSkills = [
+  "Git",
+  "Docker",
+  "Azure App Service",
+  "Google Cloud Platform",
+  "PostgreSQL",
+  "SQL Server",
+  "Vite",
+  "npm",
+];

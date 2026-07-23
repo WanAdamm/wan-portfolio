@@ -1,23 +1,26 @@
 export const timeline = [
   {
-    year: "2023",
-    title: "Computer Science Foundation",
-    icon: "school",
+    period: "Mar - Aug 2027",
+    datetime: "2027-03",
+    title: "Backend Developer Intern | B. Braun",
+    icon: "deployed_code",
     description:
-      "Started building strong fundamentals in programming, data structures, algorithms, databases, and operating systems.",
+      "Engineered backend components for an internal agentic AI proof of concept that automated physical access management and employee access request workflows. Integrated three enterprise technologies (SAP, the Axxon Face Recognition Module, and SQL Server) through APIs hosted on Azure App Service. Implemented grounded multi-agent voice interactions with Azure AI Foundry and Azure Speech Service.",
   },
   {
-    year: "2024",
-    title: "Leadership & Full-Stack Projects",
+    period: "2024 - 2025",
+    datetime: "2024",
+    title: "Full-Stack Delivery & Leadership",
     icon: "rocket_launch",
     description:
-      "Built projects such as SeJahit, Visit Penang, and DuitWise while taking leadership roles in MPDIK and Computer Science Society.",
+      "Delivered web, backend, database, and mobile projects including SeJahit and DuitWise while leading an 8-member MPDIK division and coordinating technical operations for university-scale events.",
   },
   {
-    year: "2027",
-    title: "Future: AI & Software Engineering",
-    icon: "trending_up",
+    period: "2023 - Oct 2027",
+    datetime: "2023",
+    title: "BSc Computer Science | Intelligent Computing",
+    icon: "school",
     description:
-      "Targeting internship and early-career roles where AI, software engineering, and real-world product execution intersect.",
+      "Built strong foundations in algorithms, databases, operating systems, machine learning, and computational intelligence. Maintained a 3.75/4.00 CGPA and Dean's List standing at Universiti Sains Malaysia.",
   },
 ];

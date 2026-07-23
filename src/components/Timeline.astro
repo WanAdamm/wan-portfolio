@@ -3,11 +3,11 @@ import Reveal from "./Reveal.astro";
 import { timeline } from "../data/timeline";
 ---
 
-<Reveal id="timeline" class="mx-auto max-w-[1200px] px-5 py-12 md:px-16">
+<Reveal id="experience" class="mx-auto max-w-[1200px] px-5 py-12 md:px-16">
   <h2
     class="mb-12 text-center font-display text-4xl font-semibold tracking-[-0.02em]"
   >
-    Professional Journey
+    Industry Experience &amp; Growth
   </h2>
 
   <div
@@ -30,8 +30,8 @@ import { timeline } from "../data/timeline";
           <article class="glass w-[calc(100%-4rem)] rounded-2xl p-6 transition hover:border-primary/30 md:w-[calc(50%-2.5rem)]">
             <div class="mb-1 flex items-center justify-between gap-2">
               <h3 class="font-bold text-on-surface">{item.title}</h3>
-              <time class="font-mono text-sm text-primary" datetime={item.year}
-                >{item.year}</time
+              <time class="font-mono text-sm text-primary" datetime={item.datetime}
+                >{item.period}</time
               >
             </div>
             <p class="text-on-surface-variant">{item.description}</p>
