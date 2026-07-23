@@ -69,9 +69,9 @@ import { assetPath, site } from "../data/site";
     <form
       class="glass space-y-4 rounded-2xl p-6 sm:p-8"
       name="contact"
-      action={`mailto:${site.email}`}
+      action={Astro.url.pathname}
       method="post"
-      enctype="text/plain"
+      autocomplete="on"
       data-contact-form
       data-mailto={`mailto:${site.email}`}
     >
@@ -113,7 +113,6 @@ import { assetPath, site } from "../data/site";
           placeholder="Full-Time Software Engineering Opportunity"
           type="text"
           name="subject"
-          autocomplete="off"
           required
         />
       </label>
