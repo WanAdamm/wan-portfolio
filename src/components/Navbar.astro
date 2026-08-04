@@ -2,30 +2,29 @@
 import { navigation, site } from "../data/site";
 ---
 
-<header
-  class="fixed top-0 z-50 w-full border-b border-outline-variant/20 bg-surface/80 shadow-sm backdrop-blur-xl"
->
+<header class="fixed top-0 z-50 w-full border-b-[3px] border-ink bg-paper">
   <nav
-    class="mx-auto flex h-16 w-full max-w-[1200px] items-center justify-between px-5 md:px-16"
+    class="page-shell flex min-h-[4.75rem] items-center justify-between gap-4"
     aria-label="Primary navigation"
   >
-    <a href="#top" class="flex min-w-0 items-center gap-3">
-      <div
-        class="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-background font-display font-bold"
+    <a href="#top" class="group flex min-w-0 items-center gap-3 no-underline">
+      <span
+        class="flex h-11 w-11 shrink-0 items-center justify-center border-[3px] border-ink bg-blue font-display text-sm font-black text-white shadow-[3px_3px_0_#111] transition-transform group-hover:-translate-y-0.5"
+        aria-hidden="true"
       >
         WA
-      </div>
-      <span
-        class="truncate font-display text-lg font-bold tracking-tight text-on-surface sm:text-xl"
-        >Wan Muhammad Adam</span
-      >
+      </span>
+      <span class="hidden truncate font-display text-lg font-black uppercase leading-none sm:block">
+        Wan Muhammad Adam
+      </span>
+      <span class="truncate font-display text-lg font-black uppercase sm:hidden">Wan Adam</span>
     </a>
 
-    <div class="hidden items-center gap-6 lg:flex xl:gap-8">
+    <div class="hidden items-center gap-5 lg:flex">
       {
         navigation.map((link) => (
           <a
-            class="text-on-surface-variant transition hover:text-primary"
+            class="inline-flex min-h-11 items-center font-mono text-xs font-bold uppercase underline decoration-2 underline-offset-4 hover:decoration-4"
             href={link.href}
           >
             {link.label}
@@ -33,38 +32,36 @@ import { navigation, site } from "../data/site";
         ))
       }
       <a
-        class="rounded-full bg-on-surface px-5 py-2 font-bold text-background transition hover:scale-95"
+        class="brutal-button brutal-button--yellow min-h-11 px-4 py-2 text-sm"
         href={site.resumeUrl}
         target="_blank"
-        rel="noopener noreferrer">Resume</a
+        rel="noopener noreferrer"
       >
+        Resume <span aria-hidden="true">-&gt;</span>
+        <span class="sr-only">(opens in a new tab)</span>
+      </a>
     </div>
 
     <details class="group relative shrink-0 lg:hidden" data-mobile-nav>
       <summary
-        class="flex h-10 w-10 list-none items-center justify-center rounded-lg text-on-surface transition hover:bg-surface-container-low [&::-webkit-details-marker]:hidden"
+        class="flex min-h-11 min-w-20 cursor-pointer list-none items-center justify-center border-[3px] border-ink bg-yellow px-3 font-mono text-xs font-bold uppercase shadow-[3px_3px_0_#111] [&::-webkit-details-marker]:hidden"
         aria-label="Toggle navigation menu"
         aria-controls="mobile-navigation"
         aria-expanded="false"
       >
-        <span class="material-symbols-outlined group-open:hidden" aria-hidden="true"
-          >menu</span
-        >
-        <span
-          class="material-symbols-outlined hidden group-open:inline"
-          aria-hidden="true">close</span
-        >
+        <span class="group-open:hidden">Menu</span>
+        <span class="hidden group-open:inline">Close</span>
       </summary>
 
       <div
         id="mobile-navigation"
-        class="glass absolute right-0 top-12 w-64 rounded-2xl p-3 shadow-2xl"
+        class="absolute right-0 top-14 max-h-[calc(100svh-5.5rem)] w-72 max-w-[calc(100vw-2rem)] overflow-y-auto overscroll-contain border-[3px] border-ink bg-coral p-3 shadow-[6px_6px_0_#111]"
       >
-        <div class="flex flex-col gap-1">
+        <div class="flex flex-col gap-2">
           {
             navigation.map((link) => (
               <a
-                class="rounded-lg px-4 py-3 text-on-surface-variant transition hover:bg-surface-container-low hover:text-primary"
+                class="flex min-h-12 items-center border-2 border-ink bg-white px-4 font-mono text-sm font-bold uppercase no-underline hover:bg-yellow"
                 href={link.href}
               >
                 {link.label}
@@ -72,12 +69,13 @@ import { navigation, site } from "../data/site";
             ))
           }
           <a
-            class="mt-2 rounded-lg bg-on-surface px-4 py-3 text-center font-bold text-background"
+            class="brutal-button brutal-button--yellow mt-1"
             href={site.resumeUrl}
             target="_blank"
             rel="noopener noreferrer"
           >
-            View Resume
+            View Resume <span aria-hidden="true">-&gt;</span>
+            <span class="sr-only">(opens in a new tab)</span>
           </a>
         </div>
       </div>
@@ -97,9 +95,22 @@ import { navigation, site } from "../data/site";
       summary?.setAttribute("aria-expanded", String(details.open));
     });
 
-    details.querySelectorAll("a").forEach((link) => {
+    details.querySelectorAll<HTMLAnchorElement>("a").forEach((link) => {
       link.addEventListener("click", () => {
+        const destination = link.hash
+          ? document.querySelector<HTMLElement>(link.hash)
+          : null;
+        const destinationHeading =
+          destination?.querySelector<HTMLElement>("h1, h2") ?? destination;
+
         details.open = false;
+
+        if (destinationHeading) {
+          destinationHeading.setAttribute("tabindex", "-1");
+          requestAnimationFrame(() => {
+            destinationHeading.focus({ preventScroll: true });
+          });
+        }
       });
     });
   });

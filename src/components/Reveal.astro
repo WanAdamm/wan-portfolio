@@ -7,41 +7,6 @@ interface Props {
 const { id, class: className = "" } = Astro.props as Props;
 ---
 
-<section id={id} class={`reveal ${className}`}>
+<section id={id} class={className}>
   <slot />
 </section>
-
-<script>
-  const elements = [...document.querySelectorAll<HTMLElement>(".reveal")];
-  const motionPreference = window.matchMedia(
-    "(prefers-reduced-motion: reduce)",
-  );
-
-  const showAll = () => elements.forEach((element) => element.classList.add("active"));
-
-  if (motionPreference.matches || !("IntersectionObserver" in window)) {
-    showAll();
-  } else {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          entry.target.classList.add("active");
-          observer.unobserve(entry.target);
-        });
-      },
-      { threshold: 0.1, rootMargin: "0px 0px -48px" },
-    );
-
-    elements.forEach((element) => observer.observe(element));
-    motionPreference.addEventListener(
-      "change",
-      (event) => {
-        if (!event.matches) return;
-        observer.disconnect();
-        showAll();
-      },
-      { once: true },
-    );
-  }
-</script>

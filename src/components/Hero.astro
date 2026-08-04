@@ -1,91 +1,88 @@
 ---
-import ParticleField from "./ParticleField.astro";
+import { site } from "../data/site";
 
-const techBadges = [
-  { label: "Python", icon: "code", delay: "animate-float" },
-  { label: "React", icon: "javascript", delay: "animate-float-delayed" },
-  { label: "Azure", icon: "cloud", delay: "animate-float-more-delayed" },
-  { label: "Docker", icon: "view_in_ar", delay: "animate-float" },
-  { label: "Agentic AI", icon: "psychology", delay: "animate-float-delayed" },
-];
+const focusAreas = ["AI systems", "Backend engineering", "Full-stack delivery"];
+const technologies = ["Python", "Java", "Azure", "React", "Docker"];
 ---
 
 <section
   id="top"
-  class="hero-glow relative flex min-h-svh flex-col items-center justify-center overflow-hidden pt-16"
+  class="relative overflow-hidden border-b-[3px] border-ink bg-paper pb-16 pt-28 sm:pb-20 sm:pt-36"
 >
-  <ParticleField />
-
-  <div class="relative z-10 mx-auto max-w-4xl px-5 text-center">
-    <div
-      class="glass mb-6 inline-flex items-center gap-2 rounded-full px-3 py-1"
-    >
-      <span
-        class="h-2 w-2 animate-pulse rounded-full bg-primary"
-        aria-hidden="true"></span
-      >
-      <span class="font-mono text-xs uppercase leading-relaxed tracking-widest text-primary sm:text-sm"
-        >Open for full-time opportunities starting August 2027</span
-      >
-    </div>
-
-    <h1
-      class="mb-2 font-display text-5xl font-bold tracking-[-0.04em] text-on-surface md:text-[64px] md:leading-[1.1]"
-    >
-      Wan Muhammad Adam
-    </h1>
-
-    <p
-      class="mx-auto mb-12 max-w-2xl font-display text-2xl text-on-surface-variant"
-    >
-      <span class="block">Final-Year Computer Science Student &amp; Software Engineer</span>
-      <span class="mt-2 block text-xl md:text-2xl">
-        Data Science <span class="text-primary">|</span> Automation
-        <span class="text-primary">|</span> Full-Stack Development
-      </span>
-    </p>
-
-    <div class="mb-12 flex flex-wrap justify-center gap-3">
-      {
-        techBadges.map((badge) => (
-          <div
-            class={`tech-chip flex items-center gap-2 rounded-xl px-4 py-2 ${badge.delay}`}
-          >
-            <span
-              class="material-symbols-outlined text-[18px]"
-              aria-hidden="true"
-            >
-              {badge.icon}
-            </span>
-            <span class="font-mono">{badge.label}</span>
-          </div>
-        ))
-      }
-    </div>
-
-    <div class="flex flex-col items-center justify-center gap-4 sm:flex-row">
-      <a
-        href="#projects"
-        class="flex w-full items-center justify-center gap-2 rounded-full bg-on-surface px-8 py-4 font-bold text-background transition hover:-translate-y-0.5 hover:opacity-90 sm:w-auto"
-      >
-        View Projects <span class="material-symbols-outlined" aria-hidden="true"
-          >arrow_forward</span
-        >
-      </a>
-      <a
-        href="#contact"
-        class="flex w-full items-center justify-center gap-2 rounded-full border border-outline-variant bg-transparent px-8 py-4 font-bold text-on-surface transition hover:-translate-y-0.5 hover:border-on-surface sm:w-auto"
-      >
-        Contact Me
-      </a>
-    </div>
+  <div
+    class="absolute right-[-2.5rem] top-28 h-28 w-28 border-[3px] border-ink bg-coral sm:right-10 sm:h-40 sm:w-40"
+    aria-hidden="true"
+  >
   </div>
 
-  <div
-    class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce opacity-50"
-  >
-    <span class="material-symbols-outlined text-2xl" aria-hidden="true"
-      >expand_more</span
+  <div class="page-shell relative">
+    <div class="grid items-center gap-12 lg:grid-cols-12 lg:gap-8">
+      <div class="min-w-0 lg:col-span-7">
+        <p class="section-kicker bg-yellow">Hello, I build useful software</p>
+        <h1
+          class="hero-name font-display text-[clamp(3.25rem,9vw,6.5rem)] font-black uppercase leading-[0.82] tracking-[-0.075em]"
+        >
+          <span class="block">Wan</span>
+          <span
+            class="my-2 block w-fit border-[3px] border-ink bg-blue px-2 pb-2 pt-1 text-white shadow-[6px_6px_0_#111] sm:px-4"
+          >
+            <span>Muhammad</span>
+          </span>
+          <span class="block pl-[12%]">Adam.</span>
+        </h1>
+      </div>
+
+      <div class="relative min-w-0 lg:col-span-5 lg:pb-3">
+        <div class="brutal-card min-w-0 bg-yellow p-6 sm:p-8">
+          <p class="mb-3 font-mono text-xs font-bold uppercase tracking-[0.12em]">
+            Software engineer / Final-year CS student
+          </p>
+          <p class="font-display text-2xl font-black leading-tight sm:text-3xl">
+            Turning AI, backend, and product requirements into systems that work.
+          </p>
+          <p class="mt-5 max-w-xl text-base font-medium leading-relaxed">
+            Intelligent Computing student at Universiti Sains Malaysia with
+            hands-on enterprise experience in agentic AI, APIs, cloud services,
+            automation, and full-stack delivery.
+          </p>
+
+          <ul class="mt-6 flex flex-wrap gap-2" aria-label="Core technologies">
+            {technologies.map((technology) => <li class="brutal-chip bg-white">{technology}</li>)}
+          </ul>
+        </div>
+
+        <div class="mt-8 border-[3px] border-ink bg-coral p-4 shadow-[5px_5px_0_#111]">
+          <p class="font-mono text-xs font-bold uppercase tracking-wider">Status</p>
+          <p class="mt-1 font-display text-lg font-black">{site.availability.label}</p>
+        </div>
+
+        <div class="mt-8 flex flex-col gap-4 sm:flex-row">
+          <a href="#projects" class="brutal-button brutal-button--blue w-full sm:w-auto">
+            Explore my work
+          </a>
+          <a href="#contact" class="brutal-button w-full sm:w-auto">Start a conversation</a>
+        </div>
+      </div>
+    </div>
+
+    <ul
+      class="mt-16 grid border-[3px] border-ink bg-ink sm:grid-cols-3"
+      aria-label="Engineering focus areas"
     >
+      {
+        focusAreas.map((area, index) => (
+          <li
+            class:list={[
+              "flex min-h-16 items-center justify-center px-4 py-3 text-center font-mono text-sm font-bold uppercase",
+              index === 0 && "bg-yellow text-ink",
+              index === 1 && "border-y-[3px] border-ink bg-white text-ink sm:border-x-[3px] sm:border-y-0",
+              index === 2 && "bg-coral text-ink",
+            ]}
+          >
+            {area}
+          </li>
+        ))
+      }
+    </ul>
   </div>
 </section>

@@ -1,43 +1,52 @@
 ---
 import Reveal from "./Reveal.astro";
 import { timeline } from "../data/timeline";
+
+const labelColors = ["bg-yellow", "bg-coral", "bg-white"] as const;
 ---
 
-<Reveal id="experience" class="mx-auto max-w-[1200px] px-5 py-12 md:px-16">
-  <h2
-    class="mb-12 text-center font-display text-4xl font-semibold tracking-[-0.02em]"
-  >
-    Industry Experience &amp; Growth
-  </h2>
+<Reveal id="experience" class="border-b-[3px] border-ink bg-blue py-20 text-white sm:py-24">
+  <div class="page-shell">
+    <div class="mb-12 grid gap-6 lg:grid-cols-12 lg:items-end">
+      <div class="min-w-0 lg:col-span-8">
+        <p class="section-kicker bg-yellow text-ink">Experience / 03</p>
+        <h2 class="font-display text-[clamp(2.5rem,11.5vw,4.5rem)] font-black uppercase leading-none">
+          Learning by shipping.
+        </h2>
+      </div>
+      <p class="min-w-0 max-w-xl text-lg font-semibold leading-relaxed lg:col-span-4">
+        Enterprise engineering, full-stack projects, and a strong foundation in intelligent computing.
+      </p>
+    </div>
 
-  <div
-    class="relative space-y-12 before:absolute before:inset-0 before:ml-5 before:h-full before:w-0.5 before:-translate-x-px before:bg-gradient-to-b before:from-transparent before:via-outline-variant/50 before:to-transparent md:before:mx-auto md:before:translate-x-0"
-  >
-    {
-      timeline.map((item, index) => (
-        <div
-          class={`group relative flex items-center justify-between md:justify-normal ${index % 2 === 0 ? "md:flex-row-reverse" : ""}`}
-        >
-          <div class="z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-outline-variant bg-background text-primary transition group-hover:border-primary md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">
-            <span
-              class="material-symbols-outlined text-[16px]"
-              aria-hidden="true"
-            >
-              {item.icon}
-            </span>
-          </div>
-
-          <article class="glass w-[calc(100%-4rem)] rounded-2xl p-6 transition hover:border-primary/30 md:w-[calc(50%-2.5rem)]">
-            <div class="mb-1 flex items-center justify-between gap-2">
-              <h3 class="font-bold text-on-surface">{item.title}</h3>
-              <time class="font-mono text-sm text-primary" datetime={item.datetime}
-                >{item.period}</time
+    <ol class="space-y-7">
+      {
+        timeline.map((item, index) => (
+          <li>
+            <article class="brutal-card grid overflow-hidden text-ink md:grid-cols-[15rem_1fr]">
+              <div
+                class:list={[
+                  "border-b-[3px] border-ink p-6 md:border-b-0 md:border-r-[3px] md:p-8",
+                  labelColors[index % labelColors.length],
+                ]}
               >
-            </div>
-            <p class="text-on-surface-variant text-justify">{item.description}</p>
-          </article>
-        </div>
-      ))
-    }
+                <p class="font-mono text-xs font-bold uppercase tracking-[0.12em]">
+                  {item.category}
+                </p>
+                <p class="mt-3 font-display text-2xl font-black leading-tight">
+                  <time datetime={item.start.datetime}>{item.start.label}</time>
+                  <span aria-hidden="true"> - </span><span class="sr-only"> to </span>
+                  <time datetime={item.end.datetime}>{item.end.label}</time>
+                </p>
+              </div>
+              <div class="bg-white p-6 md:p-8">
+                <h3 class="font-display text-2xl font-black sm:text-3xl">{item.title}</h3>
+                <p class="mt-4 max-w-4xl font-medium leading-relaxed">{item.description}</p>
+              </div>
+            </article>
+          </li>
+        ))
+      }
+    </ol>
   </div>
 </Reveal>

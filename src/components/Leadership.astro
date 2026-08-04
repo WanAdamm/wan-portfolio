@@ -4,54 +4,49 @@ import Reveal from "./Reveal.astro";
 const experiences = [
   {
     title: "MPDIK Leadership",
-    icon: "account_balance",
     description:
       "Led an 8-member division across logistics, budgeting, stakeholder communication, and mentoring, improving coordination for university programs with 30 to 50 participants.",
-    tags: "TEAM LEADERSHIP | RESOURCE MANAGEMENT",
+    tags: ["Team leadership", "Resource management"],
   },
   {
     title: "Computer Science Society",
-    icon: "terminal",
     description:
       "Directed logistics, AV systems, and venue operations for flagship events including international hackathon VHACK and PIXEL, supporting hundreds of participants while contributing to the society's website.",
-    tags: "TECHNICAL OPERATIONS | EVENT EXECUTION",
+    tags: ["Technical operations", "Event execution"],
   },
 ];
 ---
 
-<Reveal id="leadership" class="bg-surface-container-low/30 py-12">
-  <div class="mx-auto max-w-[1200px] px-5 md:px-16">
-    <div
-      class="mb-12 flex flex-col justify-between gap-4 md:flex-row md:items-end"
-    >
-      <div>
-        <h2 class="font-display text-4xl font-semibold tracking-[-0.02em]">
-          Leadership &amp; Delivery
+<Reveal id="leadership" class="border-b-[3px] border-ink bg-coral py-20 sm:py-24">
+  <div class="page-shell">
+    <div class="mb-12 grid gap-6 lg:grid-cols-12 lg:items-end">
+      <div class="min-w-0 lg:col-span-8">
+        <p class="section-kicker bg-white">Leadership / 05</p>
+        <h2 class="font-display text-[clamp(2.5rem,11.5vw,4.5rem)] font-black uppercase leading-none">
+          Ownership beyond code.
         </h2>
-        <p class="text-lg text-on-surface-variant">
-          Taking ownership across teams, stakeholders, and high-pressure delivery.
-        </p>
       </div>
-      <span
-        class="rounded-full bg-primary/10 px-4 py-2 font-mono text-sm text-primary"
-        >TEAMWORK &amp; EXECUTION</span
-      >
+      <p class="min-w-0 max-w-lg text-lg font-semibold leading-relaxed lg:col-span-4">
+        Coordinating people, resources, technical operations, and high-pressure delivery.
+      </p>
     </div>
 
-    <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+    <div class="grid gap-8 md:grid-cols-2 md:pb-8">
       {
-        experiences.map((item) => (
-          <article class="glass rounded-2xl p-8 transition hover:-translate-y-1 hover:border-primary">
-            <div class="mb-6 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
-              <span class="material-symbols-outlined" aria-hidden="true"
-                >{item.icon}</span
-              >
+        experiences.map((item, index) => (
+          <article class:list={["brutal-card min-w-0 overflow-hidden", index === 1 && "md:translate-y-8"]}>
+            <div class:list={["border-b-[3px] border-ink p-5", index === 0 ? "bg-yellow" : "bg-blue text-white"]}>
+              <p class="font-mono text-xs font-bold uppercase tracking-wider">
+                Leadership record {String(index + 1).padStart(2, "0")}
+              </p>
             </div>
-            <h3 class="mb-2 font-display text-2xl font-semibold">
-              {item.title}
-            </h3>
-            <p class="mb-4 text-on-surface-variant text-justify">{item.description}</p>
-            <p class="font-mono text-xs text-primary">{item.tags}</p>
+            <div class="bg-white p-7 sm:p-8">
+              <h3 class="font-display text-3xl font-black uppercase">{item.title}</h3>
+              <p class="mt-4 font-medium leading-relaxed">{item.description}</p>
+              <ul class="mt-6 flex flex-wrap gap-2" aria-label={`${item.title} focus areas`}>
+                {item.tags.map((tag) => <li class="brutal-chip bg-paper">{tag}</li>)}
+              </ul>
+            </div>
           </article>
         ))
       }

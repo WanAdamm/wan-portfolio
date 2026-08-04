@@ -6,7 +6,13 @@ import { assetPath } from "../data/site";
 const columnClasses: Record<ProjectSize, string> = {
   large: "md:col-span-7",
   medium: "md:col-span-5",
-  wide: "md:col-span-12",
+  wide: "md:col-span-12 md:grid md:grid-cols-[1.3fr_1fr]",
+};
+
+const mediaClasses: Record<ProjectSize, string> = {
+  large: "h-64 sm:h-80",
+  medium: "h-64 sm:h-80",
+  wide: "h-64 sm:h-80 md:h-full md:min-h-[360px] md:border-b-0 md:border-r-[3px]",
 };
 
 const imageSizes: Record<ProjectSize, string> = {
@@ -15,105 +21,104 @@ const imageSizes: Record<ProjectSize, string> = {
   medium:
     "(min-width: 1200px) 450px, (min-width: 768px) 42vw, calc(100vw - 2.5rem)",
   wide:
-    "(min-width: 1200px) 1070px, (min-width: 768px) calc(100vw - 8rem), calc(100vw - 2.5rem)",
+    "(min-width: 1200px) 650px, (min-width: 768px) 55vw, calc(100vw - 2.5rem)",
 };
 ---
 
-<Reveal id="projects" class="mx-auto max-w-[1200px] px-5 py-12 md:px-16">
-  <h2 class="mb-12 font-display text-4xl font-semibold tracking-[-0.02em]">
-    Selected Projects
-  </h2>
+<Reveal id="projects" class="border-y-[3px] border-ink bg-yellow py-20 sm:py-24">
+  <div class="page-shell">
+    <div class="mb-12 flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
+      <div>
+        <p class="section-kicker bg-white">Selected work / 02</p>
+        <h2 class="font-display text-[clamp(2.5rem,11.5vw,4.5rem)] font-black uppercase leading-none">
+          Built, not imagined.
+        </h2>
+      </div>
+      <p class="max-w-md border-l-[3px] border-ink pl-5 text-lg font-semibold leading-relaxed">
+        Complete products spanning web, backend, database, mobile, and deployment decisions.
+      </p>
+    </div>
 
-  <div class="grid grid-cols-1 gap-6 md:grid-cols-12 md:auto-rows-[380px]">
-    {
-      projects.map((project) => {
-        const imageStem = project.image.replace(/\.[^.]+$/, "");
-        const optimizedSources = [640, 1200]
-          .map(
-            (width) =>
-              `${assetPath(`${imageStem}-${width}.webp`)} ${width}w`,
-          )
-          .join(", ");
+    <div class="grid grid-cols-1 gap-8 md:grid-cols-12">
+      {
+        projects.map((project, index) => {
+          const imageStem = project.image.replace(/\.[^.]+$/, "");
+          const optimizedSources = [640, 1200]
+            .map(
+              (width) =>
+                `${assetPath(`${imageStem}-${width}.webp`)} ${width}w`,
+            )
+            .join(", ");
 
-        return (
-          <article
-            class={`glass group relative h-[320px] overflow-hidden rounded-2xl transition duration-500 hover:scale-[1.02] md:h-auto ${columnClasses[project.size]}`}
-          >
-            <div class="absolute inset-0 z-10 bg-gradient-to-t from-background via-background/60 to-transparent" />
-
-            <picture>
-              <source
-                type="image/webp"
-                srcset={optimizedSources}
-                sizes={imageSizes[project.size]}
-              />
-              <img
-                src={assetPath(project.image)}
-                alt={`${project.title} preview`}
-                width={project.imageWidth}
-                height={project.imageHeight}
-                loading="lazy"
-                decoding="async"
-                class="absolute inset-0 h-full w-full object-cover opacity-70 transition duration-1000 group-hover:scale-110"
-              />
-            </picture>
-
-            <div class="absolute bottom-0 left-0 z-20 w-full p-4 md:p-8">
-              <div class="mb-2 flex flex-wrap gap-1.5 md:mb-4 md:gap-2">
-                {project.stack.map((item) => (
-                  <span class="tech-chip rounded-full px-2.5 py-0.5 text-xs md:px-3 md:py-1">
-                    {item}
-                  </span>
-                ))}
+          return (
+            <article
+              class={`brutal-card group overflow-hidden ${columnClasses[project.size]}`}
+            >
+              <div
+                class={`overflow-hidden border-b-[3px] border-ink bg-paper-deep ${mediaClasses[project.size]}`}
+              >
+                <picture class="block h-full">
+                  <source
+                    type="image/webp"
+                    srcset={optimizedSources}
+                    sizes={imageSizes[project.size]}
+                  />
+                  <img
+                    src={assetPath(project.image)}
+                    alt={project.imageAlt}
+                    width={project.imageWidth}
+                    height={project.imageHeight}
+                    loading="lazy"
+                    decoding="async"
+                    class="h-full w-full object-cover object-top transition-transform duration-200 group-hover:scale-[1.015]"
+                  />
+                </picture>
               </div>
 
-              <h3 class="mb-1 font-display text-xl font-semibold text-on-surface md:mb-2 md:text-3xl">
-                {project.title}
-              </h3>
+              <div class="flex h-full flex-col bg-white p-6 sm:p-8">
+                <div class="mb-5 flex items-center justify-between gap-4">
+                  <span class="brutal-chip bg-coral">Project {String(index + 1).padStart(2, "0")}</span>
+                  <span class="font-mono text-xs font-bold uppercase">Case study</span>
+                </div>
 
-              <p class="mb-3 max-w-xl line-clamp-2 text-sm text-on-surface-variant text-justify md:mb-6 md:line-clamp-none md:text-base">
-                {project.description}
-              </p>
+                <h3 class="font-display text-3xl font-black uppercase sm:text-4xl">
+                  {project.title}
+                </h3>
+                <p class="mt-4 flex-1 font-medium leading-relaxed">{project.description}</p>
 
-              <div class="flex gap-4">
-                {project.github && (
-                  <a
-                    class="inline-flex items-center gap-2 text-sm text-primary transition hover:gap-4 md:text-base"
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    GitHub
-                    <span
-                      class="material-symbols-outlined text-sm md:text-base"
-                      aria-hidden="true"
+                <ul class="mt-6 flex flex-wrap gap-2" aria-label={`${project.title} technologies`}>
+                  {project.stack.map((item) => <li class="brutal-chip">{item}</li>)}
+                </ul>
+
+                <div class="mt-7 flex flex-wrap gap-4">
+                  {project.github && (
+                    <a
+                      class="brutal-button brutal-button--yellow"
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
                     >
-                      north_east
-                    </span>
-                  </a>
-                )}
-
-                {project.live && (
-                  <a
-                    class="inline-flex items-center gap-2 text-sm text-primary transition hover:gap-4 md:text-base"
-                    href={project.live}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Live Demo
-                    <span
-                      class="material-symbols-outlined text-sm md:text-base"
-                      aria-hidden="true"
+                      GitHub <span aria-hidden="true">-&gt;</span>
+                      <span class="sr-only">(opens in a new tab)</span>
+                    </a>
+                  )}
+                  {project.live && (
+                    <a
+                      class="brutal-button brutal-button--blue"
+                      href={project.live}
+                      target="_blank"
+                      rel="noopener noreferrer"
                     >
-                      north_east
-                    </span>
-                  </a>
-                )}
+                      Live site <span aria-hidden="true">-&gt;</span>
+                      <span class="sr-only">(opens in a new tab)</span>
+                    </a>
+                  )}
+                </div>
               </div>
-            </div>
-          </article>
-        );
-      })
-    }
+            </article>
+          );
+        })
+      }
+    </div>
   </div>
 </Reveal>

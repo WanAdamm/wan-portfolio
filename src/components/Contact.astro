@@ -1,101 +1,80 @@
 ---
 import Reveal from "./Reveal.astro";
-import { assetPath, site } from "../data/site";
+import { site } from "../data/site";
 ---
 
-<Reveal id="contact" class="mx-auto max-w-[1200px] px-5 py-12 md:px-16">
-  <div class="grid grid-cols-1 gap-16 lg:grid-cols-2">
-    <div>
-      <h2 class="mb-2 font-display text-4xl font-semibold tracking-[-0.02em]">
-        Let's Discuss Your Engineering Team
+<Reveal id="contact" class="border-b-[3px] border-ink bg-yellow py-20 sm:py-24">
+  <div class="page-shell grid gap-12 lg:grid-cols-12 lg:gap-10">
+    <div class="min-w-0 lg:col-span-6">
+      <p class="section-kicker bg-white">Contact / 06</p>
+      <h2 class="font-display text-[clamp(2.5rem,11.5vw,4.5rem)] font-black uppercase leading-[0.9]">
+        Let's build something useful.
       </h2>
-      <p class="mb-6 text-lg text-on-surface-variant text-justify">
-        Open for full-time software engineering opportunities starting August
-        2027, as well as technical collaborations in data, automation, and
-        full-stack systems.
+      <p class="mt-7 max-w-xl text-lg font-semibold leading-relaxed">
+        {site.availability.detail} I am especially interested in AI, backend,
+        automation, and full-stack product teams.
       </p>
 
-      <div class="space-y-4">
-        <a
-          class="group flex items-center gap-4 rounded-xl border border-outline-variant/10 p-4 transition hover:bg-surface-container-low/40"
-          href={`mailto:${site.email}`}
-        >
-          <div
-            class="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary transition group-hover:scale-110"
-          >
-            <span class="material-symbols-outlined" aria-hidden="true"
-              >mail</span
-            >
-          </div>
-          <span class="min-w-0 break-all">{site.email}</span>
+      <div class="mt-8 border-[3px] border-ink bg-coral p-6 shadow-[6px_6px_0_#111]">
+        <p class="font-mono text-xs font-bold uppercase tracking-wider">Email me directly</p>
+        <a class="text-link mt-2 inline-block break-all text-lg sm:text-xl" href={`mailto:${site.email}`}>
+          {site.email}
         </a>
-
-        <div class="flex gap-4 pt-4">
-          <a
-            class="glass flex h-12 w-12 items-center justify-center rounded-full transition hover:-translate-y-1 hover:border-primary"
-            href={site.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="GitHub profile"
-          >
-            <img
-              src={assetPath("icon/github-logo.svg")}
-              alt=""
-              width="24"
-              height="24"
-              class="h-6 w-6 object-contain"
-            />
-          </a>
-
-          <a
-            class="glass flex h-12 w-12 items-center justify-center rounded-full transition hover:-translate-y-1 hover:border-primary"
-            href={site.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="LinkedIn profile"
-          >
-            <img
-              src={assetPath("icon/linkedin-logo.png")}
-              alt=""
-              width="24"
-              height="24"
-              class="h-6 w-6 object-contain"
-            />
-          </a>
-        </div>
       </div>
+
+      <nav class="mt-8 flex flex-wrap gap-4" aria-label="Social profiles">
+        <a
+          class="brutal-button bg-white"
+          href={site.github}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          GitHub <span aria-hidden="true">-&gt;</span>
+          <span class="sr-only">(opens in a new tab)</span>
+        </a>
+        <a
+          class="brutal-button brutal-button--blue"
+          href={site.linkedin}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          LinkedIn <span aria-hidden="true">-&gt;</span>
+          <span class="sr-only">(opens in a new tab)</span>
+        </a>
+      </nav>
     </div>
 
     <form
-      class="glass space-y-4 rounded-2xl p-6 sm:p-8"
+      class="brutal-card min-w-0 space-y-5 bg-white p-6 sm:p-8 lg:col-span-6"
       name="contact"
-      action={Astro.url.pathname}
-      method="post"
+      action={`mailto:${site.email}`}
+      method="get"
       autocomplete="on"
       data-contact-form
       data-mailto={`mailto:${site.email}`}
     >
-      <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
-        <label class="space-y-2">
-          <span class="font-mono text-xs uppercase text-on-surface-variant"
-            >Full Name</span
-          >
+      <div>
+        <p class="font-mono text-xs font-bold uppercase tracking-wider text-blue">Project inquiry</p>
+        <h3 class="mt-1 font-display text-3xl font-black uppercase">Open an email draft</h3>
+      </div>
+
+      <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
+        <label class="block">
+          <span class="mb-2 block font-mono text-xs font-bold uppercase">Full name</span>
           <input
-            class="w-full rounded-lg border border-outline-variant bg-background/50 p-3 text-on-surface outline-none transition focus:border-primary focus:ring-1 focus:ring-primary"
-            placeholder="John Doe"
+            class="min-h-12 w-full border-[3px] border-ink bg-paper p-3 text-base font-medium placeholder:text-ink/65 focus:bg-white"
+            placeholder="Your name"
             type="text"
             name="fullName"
             autocomplete="name"
             required
           />
         </label>
-        <label class="space-y-2">
-          <span class="font-mono text-xs uppercase text-on-surface-variant"
-            >Email</span
-          >
+        <label class="block">
+          <span class="mb-2 block font-mono text-xs font-bold uppercase">Email</span>
           <input
-            class="w-full rounded-lg border border-outline-variant bg-background/50 p-3 text-on-surface outline-none transition focus:border-primary focus:ring-1 focus:ring-primary"
-            placeholder="john@example.com"
+            class="min-h-12 w-full border-[3px] border-ink bg-paper p-3 text-base font-medium placeholder:text-ink/65 focus:bg-white"
+            placeholder="you@example.com"
             type="email"
             name="email"
             autocomplete="email"
@@ -104,48 +83,42 @@ import { assetPath, site } from "../data/site";
         </label>
       </div>
 
-      <label class="block space-y-2">
-        <span class="font-mono text-xs uppercase text-on-surface-variant"
-          >Subject</span
-        >
+      <label class="block">
+        <span class="mb-2 block font-mono text-xs font-bold uppercase">Subject</span>
         <input
-          class="w-full rounded-lg border border-outline-variant bg-background/50 p-3 text-on-surface outline-none transition focus:border-primary focus:ring-1 focus:ring-primary"
-          placeholder="Full-Time Software Engineering Opportunity"
+          class="min-h-12 w-full border-[3px] border-ink bg-paper p-3 text-base font-medium placeholder:text-ink/65 focus:bg-white"
+          placeholder="Software engineering opportunity"
           type="text"
           name="subject"
           required
         />
       </label>
 
-      <label class="block space-y-2">
-        <span class="font-mono text-xs uppercase text-on-surface-variant"
-          >Message</span
-        >
+      <label class="block">
+        <span class="mb-2 block font-mono text-xs font-bold uppercase">Message</span>
         <textarea
-          class="w-full rounded-lg border border-outline-variant bg-background/50 p-3 text-on-surface outline-none transition focus:border-primary focus:ring-1 focus:ring-primary"
-          placeholder="How can I help you?"
-          rows="4"
+          class="min-h-36 w-full resize-y border-[3px] border-ink bg-paper p-3 text-base font-medium placeholder:text-ink/65 focus:bg-white"
+          placeholder="Tell me about the role, project, or problem."
+          rows="5"
           name="message"
           required></textarea>
       </label>
 
-      <p class="text-sm text-on-surface-variant">
-        Submitting opens a pre-filled draft in your default email app.
+      <p class="text-sm font-medium" id="contact-help">
+        Submitting opens a pre-filled draft in your default email application.
       </p>
 
-      <button
-        class="w-full rounded-lg bg-on-surface py-4 font-bold text-background transition hover:opacity-90 active:scale-95"
-        type="submit"
-      >
-        Open Email Draft
+      <noscript>
+        <p class="border-2 border-ink bg-yellow p-3 text-sm font-bold">
+          JavaScript is unavailable. Use the direct email link beside this form instead.
+        </p>
+      </noscript>
+
+      <button class="brutal-button brutal-button--coral w-full" type="submit" aria-describedby="contact-help">
+        Prepare email <span aria-hidden="true">-&gt;</span>
       </button>
 
-      <p
-        class="min-h-5 text-sm text-primary"
-        aria-live="polite"
-        data-contact-status
-      >
-      </p>
+      <p class="min-h-6 font-mono text-sm font-bold" aria-live="polite" data-contact-status></p>
     </form>
   </div>
 </Reveal>
@@ -169,11 +142,9 @@ import { assetPath, site } from "../data/site";
           `From: ${value("fullName")}`,
           `Reply to: ${value("email")}`,
         ].join("\r\n");
-        const status = form.querySelector<HTMLElement>(
-          "[data-contact-status]",
-        );
+        const status = form.querySelector<HTMLElement>("[data-contact-status]");
 
-        if (status) status.textContent = "Opening your email app...";
+        if (status) status.textContent = "Opening your email application...";
         window.location.href = `${form.dataset.mailto}?subject=${encodeURIComponent(value("subject"))}&body=${encodeURIComponent(body)}`;
       });
     },
