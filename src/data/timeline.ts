@@ -16,7 +16,7 @@ export const timeline = [
       "Delivered web, backend, database, and mobile projects including SeJahit and DuitWise while leading an 8-member MPDIK division and coordinating technical operations for university-scale events.",
   },
   {
-    start: { label: "2023", datetime: "2023" },
+    start: { label: "Oct 2023", datetime: "2023-10" },
     end: { label: "Oct 2027", datetime: "2027-10" },
     category: "Education",
     title: "BSc Computer Science | Intelligent Computing",
