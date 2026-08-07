@@ -2,13 +2,13 @@
 
 **AI Solutions Engineer | AI Developer | Applied AI & Backend Engineering**
 
-wanadamworkmail@gmail.com | [LinkedIn](https://linkedin.com) | +60 10-837 9125 | [github.com/WanAdamm](https://github.com/WanAdamm)
+wanadamworkmail@gmail.com | [LinkedIn](https://www.linkedin.com/in/wan-muhammad-adam-74409427a/) | +60 10-837 9125 | [github.com/WanAdamm](https://github.com/WanAdamm)
 
 ---
 
 ## Professional Summary
 
-Computer Science graduate with hands-on experience building **agentic AI systems and multi-agent orchestration workflows** in an enterprise environment, using Azure AI Foundry and Azure Speech Service to power grounded, voice-driven interactions. Skilled at integrating AI services with enterprise backends — SAP, SQL Server, and REST APIs on Azure App Service — to connect intelligent automation with real business systems (physical access management, facial recognition, ERP). Strong full-stack foundation with a track record of shipping complete applications from data layer to deployment.
+Final-year Computer Science student with hands-on experience building **agentic AI systems, enterprise software, and multi-agent orchestration workflows** using Azure AI Foundry and Azure Speech Service. Skilled at integrating AI services with SAP, SQL Server, facial recognition systems, and REST APIs on Azure App Service. Strong full-stack foundation with experience shipping complete applications and delivering features through peer-reviewed enterprise development workflows.
 
 ---
 
@@ -18,9 +18,9 @@ Computer Science graduate with hands-on experience building **agentic AI systems
 
 **Programming Languages:** Python, Java, C++, JavaScript, R, SQL
 
-**Backend & Frameworks:** Node.js, Flask, Django, Java Servlet (Tomcat), REST API Design
+**Backend & Frameworks:** Node.js, FastAPI, Flask, Django, Java Servlet (Tomcat), REST API Design
 
-**Frontend:** ReactJS, Flutter, TailwindCSS, Bootstrap
+**Frontend & Build Tools:** ReactJS, Flutter, Vite, TailwindCSS, Bootstrap, Enterprise Web Components
 
 **Databases:** PostgreSQL, SQL Server
 
@@ -28,17 +28,20 @@ Computer Science graduate with hands-on experience building **agentic AI systems
 
 **Enterprise Integrations:** SAP, Axxon Face Recognition Module, System Interoperability
 
+**Engineering Practices:** GitHub Enterprise, Branch-Based Development, Pull Requests, Code Reviews, Issue Tracking, Agile Delivery
+
 ---
 
 ## Experience
 
-### Backend Developer Intern — B. Braun Medical Industries
+### IT Trainee — B. Braun Medical Industries
 *March 2026 – August 2026*
 
-- Engineered backend components for an enterprise **Agentic AI Proof-of-Concept**, automating physical access management and employee access-request workflows to streamline enterprise security operations.
-- Integrated **SAP, Axxon Face Recognition Module, and SQL Server** with backend REST APIs deployed on **Azure App Service**, enabling seamless interoperability across enterprise identity, security, and ERP systems.
-- Built **grounded multi-agent orchestration workflows** using **Azure AI Foundry** and **Azure Speech Service**, powering context-aware, voice-driven user interactions within the access-management platform.
-- Collaborated across enterprise systems (SAP, facial recognition hardware, SQL Server) to deliver full-lifecycle engineering — from API design and cloud deployment to AI-driven decision workflows.
+- Contributed to an enterprise digital access-management proof of concept using **React, Vite, Tailwind CSS, FastAPI, and REST APIs**, enhancing user onboarding, contextual guidance, and identity-confirmation workflows.
+- Integrated **SAP, Axxon Face Recognition Module, and SQL Server** through REST APIs deployed on **Azure App Service**, enabling interoperability across identity, security, and ERP systems.
+- Built **grounded multi-agent workflows** using **Azure AI Foundry** and **Azure Speech Service** for context-aware, voice-driven access-management interactions.
+- Recorded **220+ contributions across private enterprise repositories**, delivering features through branch-based development, pull requests, peer code reviews, issue tracking, and Agile delivery practices.
+- Supported an internal knowledge-sharing platform through collaborative development and documentation contributions.
 
 ---
 
