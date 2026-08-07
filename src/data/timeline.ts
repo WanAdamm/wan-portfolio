@@ -3,9 +3,9 @@ export const timeline = [
     start: { label: "Mar", datetime: "2026-03" },
     end: { label: "Aug 2026", datetime: "2026-08" },
     category: "Industry",
-    title: "Backend Developer Intern | B. Braun",
+    title: "IT Trainee | B. Braun",
     description:
-      "Engineered backend components for an internal agentic AI proof of concept that automated physical access management and employee access request workflows. Integrated three enterprise technologies (SAP, the Axxon Face Recognition Module, and SQL Server) through APIs hosted on Azure App Service. Implemented grounded multi-agent voice interactions with Azure AI Foundry and Azure Speech Service.",
+      "Contributed to an enterprise access-management proof of concept across React, FastAPI, Azure AI workflows, and integrations with SAP, Axxon, and SQL Server. Delivered 220+ contributions through branch-based development, pull requests, peer code reviews, and issue tracking in GitHub Enterprise.",
   },
   {
     start: { label: "2024", datetime: "2024" },

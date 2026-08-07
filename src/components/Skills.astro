@@ -63,7 +63,9 @@ import {
                   "flex min-h-14 items-center border-ink px-5 py-3 font-bold",
                   index < frameworkSkills.length - 1 && "border-b-2",
                   index % 2 === 0 && "sm:border-r-2",
-                  index === frameworkSkills.length - 2 && "sm:border-b-0",
+                  index >=
+                    frameworkSkills.length - (frameworkSkills.length % 2 || 2) &&
+                    "sm:border-b-0",
                 ]}
               >
                 <span class="mr-3 font-mono text-blue" aria-hidden="true">#</span>
@@ -85,8 +87,10 @@ import {
               <li
                 class:list={[
                   "flex min-h-14 items-center border-ink px-5 py-3 font-bold",
-                  index < toolSkills.length - 2 && "border-b-2",
+                  index < toolSkills.length - 1 && "border-b-2",
                   index % 2 === 0 && "sm:border-r-2",
+                  index >= toolSkills.length - (toolSkills.length % 2 || 2) &&
+                    "sm:border-b-0",
                 ]}
               >
                 <span class="mr-3 h-3 w-3 shrink-0 border-2 border-ink bg-coral" aria-hidden="true"></span>

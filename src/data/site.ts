@@ -10,8 +10,9 @@ export const site = {
     "Wan Muhammad Adam is a final-year Computer Science student building AI, backend, automation, and full-stack systems. Available for full-time roles from August 2027.",
   email: "wanadamworkmail@gmail.com",
   github: "https://github.com/WanAdamm",
-  linkedin: "https://www.linkedin.com/in/wan-muhammad-adam-74409427a/",
-  resumeUrl: assetPath("resume.pdf"),
+  linkedin: "https://www.linkedin.com/in/wan-muhammad-adam-wan-mohd-fauzi/",
+  resumePageUrl: assetPath("resume/"),
+  resumeUrl: assetPath("Wan Muhammad Adam Resume.pdf"),
   availability: {
     label: "Available from August 2027",
     detail:

@@ -29,6 +29,7 @@ export const dataAutomationSkills = [
 export const frameworkSkills = [
   "React.js",
   "Node.js",
+  "FastAPI",
   "Flask",
   "Django",
   "Java Servlet",
@@ -38,6 +39,7 @@ export const frameworkSkills = [
 
 export const toolSkills = [
   "Git",
+  "GitHub Enterprise",
   "Docker",
   "Azure App Service",
   "Google Cloud Platform",
