@@ -25,7 +25,7 @@ export const projects: readonly Project[] = [
     imageWidth: 1920,
     imageHeight: 947,
     size: "large",
-    github: "https://github.com/WanAdamm/SeJahit-Bundle-E-Commerce-Website",
+    github: "https://github.com/WanAdamm/SeJahit-Docker",
   },
   {
     title: "Visit Penang",
