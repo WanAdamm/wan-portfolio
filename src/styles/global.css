@@ -50,6 +50,11 @@ section[id] {
   color: var(--color-ink);
 }
 
+[class*="bg-yellow"] ::selection {
+  background: var(--color-blue);
+  color: var(--color-ink);
+}
+
 .page-shell {
   width: calc(100% - 2.5rem);
   max-width: 1200px;

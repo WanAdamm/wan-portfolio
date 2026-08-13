@@ -5,7 +5,7 @@ export const timeline = [
     category: "Industry",
     title: "IT Trainee | B. Braun",
     description:
-      "Contributed to an enterprise access-management proof of concept across React, FastAPI, Azure AI workflows, and integrations with SAP, Axxon, and SQL Server. Delivered 220+ contributions through branch-based development, pull requests, peer code reviews, and issue tracking in GitHub Enterprise.",
+      "Contributed to an enterprise access-management proof of concept across React, FastAPI, Azure AI workflows, and integrations with SAP, Axxon, and SQL Server. Delivered 230+ contributions through branch-based development, pull requests, peer code reviews, and issue tracking in GitHub Enterprise.",
   },
   {
     start: { label: "2024", datetime: "2024" },
