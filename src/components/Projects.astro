@@ -4,8 +4,8 @@ import { projects, type ProjectSize } from "../data/projects";
 import { assetPath } from "../data/site";
 
 const columnClasses: Record<ProjectSize, string> = {
-  large: "md:col-span-7",
-  medium: "md:col-span-5",
+  large: "flex flex-col md:col-span-7",
+  medium: "flex flex-col md:col-span-5",
   wide: "md:col-span-12 md:grid md:grid-cols-[1.3fr_1fr]",
 };
 
@@ -75,7 +75,7 @@ const imageSizes: Record<ProjectSize, string> = {
                 </picture>
               </div>
 
-              <div class="flex h-full flex-col bg-white p-6 sm:p-8">
+              <div class="flex flex-1 flex-col bg-white p-6 sm:p-8">
                 <div class="mb-5 flex items-center justify-between gap-4">
                   <span class="brutal-chip bg-coral">Project {String(index + 1).padStart(2, "0")}</span>
                   <span class="font-mono text-xs font-bold uppercase">Case study</span>

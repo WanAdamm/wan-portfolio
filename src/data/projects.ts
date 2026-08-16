@@ -36,8 +36,9 @@ export const projects: readonly Project[] = [
     imageAlt:
       "Visit Penang tourism homepage featuring a George Town landmark and local event cards",
     imageWidth: 1920,
-    imageHeight: 1816,
+    imageHeight: 2027,
     size: "medium",
+    github: "https://github.com/WanAdamm/visit-penang",
     live: "https://visit-penang-sepia.vercel.app/",
   },
   {
