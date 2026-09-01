@@ -1,6 +1,6 @@
 # Wan Portfolio
 
-A static, single-page portfolio built with Astro and Tailwind CSS and deployed to GitHub Pages.
+A static portfolio built with Astro and Tailwind CSS and deployed to GitHub Pages.
 
 ## Commands
 
@@ -17,6 +17,7 @@ A static, single-page portfolio built with Astro and Tailwind CSS and deployed t
 
 - Site metadata, links, and navigation: `src/data/site.ts`
 - Projects: `src/data/projects.ts`
+- Case-study pages: `src/pages/case-studies/`
 - Skills: `src/data/skills.ts`
 - Timeline: `src/data/timeline.ts`
 - Static assets: `public/`

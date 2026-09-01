@@ -113,6 +113,14 @@ const imageSizes: Record<ProjectSize, string> = {
                       <span class="sr-only">(opens in a new tab)</span>
                     </a>
                   )}
+                  {project.caseStudy && (
+                    <a
+                      class="brutal-button brutal-button--coral"
+                      href={assetPath(project.caseStudy)}
+                    >
+                      Read case study <span aria-hidden="true">-&gt;</span>
+                    </a>
+                  )}
                 </div>
               </div>
             </article>

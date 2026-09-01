@@ -11,6 +11,7 @@ export type Project = {
   size: ProjectSize;
   github?: string;
   live?: string;
+  caseStudy?: string;
 };
 
 export const projects: readonly Project[] = [
@@ -53,5 +54,18 @@ export const projects: readonly Project[] = [
     imageHeight: 946,
     size: "wide",
     github: "https://github.com/WanAdamm/DuitWise-CAT304/releases/tag/v2.0.0",
+  },
+  {
+    title: "NASA Log Streaming",
+    description:
+      "Designed a serverless GCP pipeline that streams NASA HTTP access logs through Pub/Sub and Dataflow into BigQuery, with near-real-time analytics delivered through Looker Studio.",
+    stack: ["Python", "Cloud Pub/Sub", "Dataflow", "BigQuery", "Looker Studio"],
+    image: "images/nasa-log-streaming-picture.png",
+    imageAlt:
+      "NASA log streaming demo showing published HTTP requests, a BigQuery result, and a Looker Studio analytics dashboard",
+    imageWidth: 1920,
+    imageHeight: 1080,
+    size: "wide",
+    caseStudy: "case-studies/nasa-realtime-log-streaming/",
   },
 ];

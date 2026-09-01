@@ -11,6 +11,7 @@ export const site = {
   email: "wanadamworkmail@gmail.com",
   github: "https://github.com/WanAdamm",
   linkedin: "https://www.linkedin.com/in/wan-muhammad-adam-wan-mohd-fauzi/",
+  homeUrl: assetPath(""),
   resumePageUrl: assetPath("resume/"),
   resumeUrl: assetPath("Wan Muhammad Adam Resume.pdf"),
   availability: {
@@ -21,9 +22,9 @@ export const site = {
 } as const;
 
 export const navigation = [
-  { label: "Work", href: "#projects" },
-  { label: "Experience", href: "#experience" },
-  { label: "Skills", href: "#skills" },
-  { label: "Leadership", href: "#leadership" },
-  { label: "Contact", href: "#contact" },
+  { label: "Work", href: `${site.homeUrl}#projects` },
+  { label: "Experience", href: `${site.homeUrl}#experience` },
+  { label: "Skills", href: `${site.homeUrl}#skills` },
+  { label: "Leadership", href: `${site.homeUrl}#leadership` },
+  { label: "Contact", href: `${site.homeUrl}#contact` },
 ] as const;

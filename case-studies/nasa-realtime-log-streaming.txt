@@ -1,0 +1,149 @@
+Here is the full case study written in raw Markdown so you can view, copy, or use it directly:
+
+```markdown
+# Case Study: Real-Time Log Analytics Architecture on Google Cloud Platform
+
+## Executive Summary
+
+This case study outlines the end-to-end design, implementation, and deployment of a serverless, real-time log ingestion and analytics pipeline on **Google Cloud Platform (GCP)**. Prompted by an inquiry regarding high-throughput log processing in technical system design, this project demonstrates a production-grade streaming architecture using the **NASA HTTP Access Log** dataset.
+
+The system ingests continuous HTTP web logs, buffers high-throughput traffic, performs real-time transformations, streams data into an enterprise data warehouse, and presents live metrics on an interactive visualization dashboard.
+
+---
+
+## Architecture & Data Flow
+
+The architecture follows a decoupled, event-driven pattern designed for sub-second latency, horizontal scalability, and high fault tolerance.
+
+
+```
+
++------------------+      +-------------------+      +--------------------+
+|  Python Log      | ---> |  Cloud Pub/Sub    | ---> |   Cloud Dataflow   |
+|  Producer        |      |  (Message Buffer) |      |   (Apache Beam)    |
++------------------+      +-------------------+      +--------------------+
+|
+v
++------------------+                                 +--------------------+
+|  Looker Studio   | <------------------------------ |   BigQuery         |
+|  Dashboard       |                                 |   (Data Warehouse) |
++------------------+                                 +--------------------+
+
+```
+
+### Component Breakdown
+
+1. **Traffic Producer (Python Application):**
+   * Simulates continuous web requests by reading raw Common Log Format (CLF) events from the NASA access log dataset.
+   * Parses unformatted string lines into structured JSON payloads.
+   * Normalizes timestamps to ISO 8601 UTC standards (`YYYY-MM-DDTHH:MM:SSZ`).
+   * Publishes events continuously to a messaging topic via the Google Cloud Pub/Sub SDK.
+
+2. **Ingestion Layer (Cloud Pub/Sub):**
+   * Acts as a serverless event bus and traffic shock absorber.
+   * Decouples log generation from downstream processing engines.
+   * Ensures message persistence and guarantees at-least-once delivery during high-volume traffic spikes.
+
+3. **Stream Processing Engine (Cloud Dataflow / Apache Beam):**
+   * Executes a managed streaming job (`PubSub_Subscription_to_BigQuery` pipeline).
+   * Dynamically scales worker instances based on throughput volume.
+   * Performs real-time schema validation, type casting, and structured data transformation without disk-backed staging.
+
+4. **Analytics Storage (BigQuery):**
+   * Serves as the centralized, serverless data warehouse.
+   * Utilizes streaming buffer insertions for real-time row availability.
+   * Partitioned schema design enables performant SQL aggregations over millions of records.
+
+5. **Visualization Layer (Looker Studio):**
+   * Direct BigQuery connector configured with short data-freshness intervals.
+   * Displays key metrics including overall throughput, HTTP status code distributions (200 OK vs 404 Errors), and top visited endpoints.
+
+---
+
+## Technical Stack & Specifications
+
+| Layer | Technology | Key Configuration / Details |
+| :--- | :--- | :--- |
+| **Language & SDKs** | Python 3.x, `google-cloud-pubsub` | Asynchronous publishing, regex parsing |
+| **Ingestion** | Google Cloud Pub/Sub | Topic: `nasa-log-stream`<br>Subscription: `nasa-log-sub` |
+| **Stream Processing** | Google Cloud Dataflow | Apache Beam engine (`us-central1` region) |
+| **Data Warehouse** | Google Cloud BigQuery | Dataset: `nasa_logs`<br>Table: `http_requests` |
+| **Visualization** | Google Looker Studio | Real-time connection, 1-minute cache refresh |
+| **CLI / DevOps** | Google Cloud SDK (`gcloud`, `bq`) | Resource provisioning, job lifecycle management |
+
+---
+
+## Schema Definition
+
+### Target Table: `http_requests`
+
+```sql
+CREATE TABLE log-service-simulation.nasa_logs.http_requests (
+    host STRING,
+    timestamp TIMESTAMP,
+    request_method STRING,
+    endpoint STRING,
+    protocol STRING,
+    status_code INTEGER,
+    bytes_sent INTEGER
+);
+
+```
+
+---
+
+## Implementation Journey & Technical Insights
+
+### 1. Handling Capacity Constraints (`ZONE_RESOURCE_POOL_EXHAUSTED`)
+
+* **Challenge:** Initial Dataflow job deployments encountered zone resource stockouts in `us-central1-c`, causing worker initialization failures.
+* **Resolution:** Re-routed worker pool allocation explicitly to `us-central1-a` using the `--zone` configuration flag during job submission.
+
+### 2. Schema Strictness and Timestamp Precision
+
+* **Challenge:** Default Dataflow BigQuery templates dropped messages when timestamps included fractional microsecond extensions (`.221034Z`).
+* **Resolution:** Refactored the Python producer parsing function using `.strftime('%Y-%m-%dT%H:%M:%SZ')` to ensure strict alignment with ISO 8601 formatting expected by BigQuery insertion API.
+
+---
+
+## Analytical Queries & Verification
+
+### Traffic Volume and HTTP Status Distribution
+
+```sql
+SELECT 
+    request_method,
+    status_code,
+    COUNT(*) AS total_requests,
+    SUM(bytes_sent) AS total_bytes
+FROM `log-service-simulation.nasa_logs.http_requests`
+GROUP BY request_method, status_code
+ORDER BY total_requests DESC;
+
+```
+
+### Top 10 Requested Resources
+
+```sql
+SELECT 
+    endpoint,
+    COUNT(*) AS request_count,
+    SUM(bytes_sent) AS total_bytes
+FROM `log-service-simulation.nasa_logs.http_requests`
+GROUP BY endpoint
+ORDER BY request_count DESC
+LIMIT 10;
+
+```
+
+---
+
+## Key Results & Takeaways
+
+* **High Throughput:** Verified ingestion and streaming transformation of tens of thousands of log records with sub-second end-to-end latency.
+* **Operational Efficiency:** Managed entirely via serverless GCP services, requiring zero manual infrastructure maintenance.
+* **System Design Demonstration:** Successfully validated an enterprise pattern for handling massive log streams, bridging theoretical system design concepts with hands-on cloud implementation.
+
+```
+
+```

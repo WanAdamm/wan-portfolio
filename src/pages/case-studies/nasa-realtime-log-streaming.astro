@@ -1,0 +1,457 @@
+---
+import Footer from "../../components/Footer.astro";
+import Navbar from "../../components/Navbar.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { assetPath, site } from "../../data/site";
+
+const architecture = [
+  {
+    label: "Producer",
+    technology: "Python",
+    detail: "Parses NASA HTTP logs, normalizes timestamps, and publishes structured JSON events.",
+    accent: "bg-coral",
+  },
+  {
+    label: "Ingestion",
+    technology: "Cloud Pub/Sub",
+    detail: "Buffers traffic, persists messages, and decouples producers from downstream processing.",
+    accent: "bg-yellow",
+  },
+  {
+    label: "Processing",
+    technology: "Dataflow",
+    detail: "Runs Apache Beam transformations, validates the schema, and scales workers with demand.",
+    accent: "bg-blue text-white",
+  },
+  {
+    label: "Warehouse",
+    technology: "BigQuery",
+    detail: "Accepts streaming inserts and provides partitioned, serverless analytical storage.",
+    accent: "bg-white",
+  },
+  {
+    label: "Visualization",
+    technology: "Looker Studio",
+    detail: "Surfaces throughput, status-code distribution, and frequently requested endpoints.",
+    accent: "bg-coral",
+  },
+] as const;
+
+const components = [
+  {
+    number: "01",
+    title: "Traffic producer",
+    technology: "Python application",
+    details: [
+      "Reads raw Common Log Format events from the NASA access log dataset.",
+      "Parses unformatted lines into structured JSON payloads.",
+      "Normalizes timestamps to ISO 8601 UTC before asynchronous publishing.",
+    ],
+  },
+  {
+    number: "02",
+    title: "Ingestion layer",
+    technology: "Cloud Pub/Sub",
+    details: [
+      "Acts as a serverless event bus and traffic shock absorber.",
+      "Decouples log generation from the processing engine.",
+      "Provides message persistence and at-least-once delivery during traffic spikes.",
+    ],
+  },
+  {
+    number: "03",
+    title: "Stream processor",
+    technology: "Dataflow / Apache Beam",
+    details: [
+      "Runs the managed PubSub_Subscription_to_BigQuery streaming pipeline.",
+      "Scales worker instances dynamically in response to throughput.",
+      "Validates schemas, casts types, and transforms events without disk-backed staging.",
+    ],
+  },
+  {
+    number: "04",
+    title: "Analytics storage",
+    technology: "BigQuery",
+    details: [
+      "Serves as the centralized, serverless data warehouse.",
+      "Uses streaming buffer insertions to make rows available in near real time.",
+      "Supports efficient aggregation through a structured analytical schema.",
+    ],
+  },
+  {
+    number: "05",
+    title: "Visualization layer",
+    technology: "Looker Studio",
+    details: [
+      "Connects directly to BigQuery with short data-freshness intervals.",
+      "Tracks overall throughput and HTTP response-code distributions.",
+      "Ranks the most frequently visited NASA resources and endpoints.",
+    ],
+  },
+] as const;
+
+const stack = [
+  ["Language & SDKs", "Python 3.x, google-cloud-pubsub", "Asynchronous publishing and regular-expression parsing"],
+  ["Ingestion", "Google Cloud Pub/Sub", "Topic: nasa-log-stream; subscription: nasa-log-sub"],
+  ["Stream processing", "Google Cloud Dataflow", "Apache Beam engine in us-central1"],
+  ["Data warehouse", "Google Cloud BigQuery", "Dataset: nasa_logs; table: http_requests"],
+  ["Visualization", "Google Looker Studio", "Direct connection with a one-minute cache refresh"],
+  ["CLI / DevOps", "Google Cloud SDK", "Resource provisioning and job lifecycle management with gcloud and bq"],
+] as const;
+
+const schemaQuery = `CREATE TABLE \`log-service-simulation.nasa_logs.http_requests\` (
+  host STRING,
+  timestamp TIMESTAMP,
+  request_method STRING,
+  endpoint STRING,
+  protocol STRING,
+  status_code INTEGER,
+  bytes_sent INTEGER
+);`;
+
+const trafficQuery = `SELECT
+  request_method,
+  status_code,
+  COUNT(*) AS total_requests,
+  SUM(bytes_sent) AS total_bytes
+FROM \`log-service-simulation.nasa_logs.http_requests\`
+GROUP BY request_method, status_code
+ORDER BY total_requests DESC;`;
+
+const resourcesQuery = `SELECT
+  endpoint,
+  COUNT(*) AS request_count,
+  SUM(bytes_sent) AS total_bytes
+FROM \`log-service-simulation.nasa_logs.http_requests\`
+GROUP BY endpoint
+ORDER BY request_count DESC
+LIMIT 10;`;
+---
+
+<BaseLayout
+  title={`NASA Real-Time Log Streaming | ${site.name}`}
+  description="A detailed case study of a serverless GCP pipeline that streams NASA HTTP logs through Pub/Sub, Dataflow, BigQuery, and Looker Studio."
+>
+  <Navbar />
+
+  <main id="main-content" tabindex="-1">
+    <article>
+      <header class="border-b-[3px] border-ink bg-blue pb-16 pt-32 text-white sm:pb-20 sm:pt-36">
+        <div class="page-shell">
+          <a
+            class="font-mono text-xs font-bold uppercase text-yellow underline decoration-2 underline-offset-4 hover:decoration-4"
+            href={`${assetPath("")}#projects`}
+          >
+            &lt;- Back to selected work
+          </a>
+
+          <div class="mt-8 grid gap-8 lg:grid-cols-12 lg:items-end">
+            <div class="lg:col-span-8">
+              <p class="section-kicker bg-yellow text-ink">Case study / Cloud data engineering</p>
+              <h1 class="max-w-5xl font-display text-[clamp(3rem,9vw,6.75rem)] font-black uppercase leading-[0.84] tracking-[-0.065em]">
+                NASA real-time log streaming.
+              </h1>
+            </div>
+
+            <div class="border-[3px] border-white bg-ink p-6 shadow-[6px_6px_0_#ffd91a] lg:col-span-4">
+              <p class="font-mono text-xs font-bold uppercase tracking-wider text-yellow">The brief</p>
+              <p class="mt-3 text-lg font-bold leading-relaxed">
+                Turn a static HTTP access-log dataset into a continuous, observable analytics system with low latency and no server management.
+              </p>
+            </div>
+          </div>
+
+          <ul class="mt-10 flex flex-wrap gap-2" aria-label="Project technologies">
+            {
+              ["Python", "Cloud Pub/Sub", "Dataflow", "Apache Beam", "BigQuery", "Looker Studio"].map(
+                (technology) => <li class="brutal-chip bg-white">{technology}</li>,
+              )
+            }
+          </ul>
+        </div>
+      </header>
+
+      <section class="border-b-[3px] border-ink bg-yellow py-12 sm:py-16" aria-labelledby="project-overview">
+        <div class="page-shell">
+          <figure class="brutal-card overflow-hidden bg-white">
+            <picture class="block">
+              <source
+                type="image/webp"
+                srcset={`${assetPath("images/nasa-log-streaming-picture-640.webp")} 640w, ${assetPath("images/nasa-log-streaming-picture-1200.webp")} 1200w`}
+                sizes="(min-width: 1200px) 1200px, calc(100vw - 2.5rem)"
+              />
+              <img
+                src={assetPath("images/nasa-log-streaming-picture.png")}
+                alt="NASA log producer and BigQuery query terminals beside a Looker Studio dashboard visualizing streamed HTTP requests"
+                width="1920"
+                height="1080"
+                decoding="async"
+                fetchpriority="high"
+                class="h-auto w-full border-b-[3px] border-ink"
+              />
+            </picture>
+            <figcaption class="p-4 font-mono text-xs font-bold uppercase leading-relaxed sm:px-6">
+              Live producer output, BigQuery verification, and the connected Looker Studio report.
+            </figcaption>
+          </figure>
+
+          <div class="mt-12 grid gap-8 lg:grid-cols-12">
+            <div class="lg:col-span-7">
+              <p class="section-kicker bg-white">Executive summary</p>
+              <h2 id="project-overview" class="font-display text-4xl font-black uppercase leading-none sm:text-5xl">
+                From raw events to live decisions.
+              </h2>
+              <p class="mt-6 text-lg font-semibold leading-relaxed sm:text-xl">
+                This project implements an end-to-end, serverless ingestion and analytics pipeline on Google Cloud Platform. NASA HTTP access logs are parsed into structured events, buffered for resilient delivery, transformed as a live stream, stored in an analytical warehouse, and exposed through an interactive dashboard.
+              </p>
+            </div>
+
+            <dl class="grid grid-cols-1 gap-4 sm:grid-cols-3 lg:col-span-5 lg:grid-cols-1">
+              <div class="border-[3px] border-ink bg-white p-5">
+                <dt class="font-mono text-xs font-bold uppercase">Latency target</dt>
+                <dd class="mt-1 font-display text-3xl font-black uppercase">Sub-second</dd>
+              </div>
+              <div class="border-[3px] border-ink bg-coral p-5">
+                <dt class="font-mono text-xs font-bold uppercase">Delivery model</dt>
+                <dd class="mt-1 font-display text-3xl font-black uppercase">At least once</dd>
+              </div>
+              <div class="border-[3px] border-ink bg-blue p-5 text-white">
+                <dt class="font-mono text-xs font-bold uppercase text-yellow">Operations</dt>
+                <dd class="mt-1 font-display text-3xl font-black uppercase">Serverless</dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <section class="border-b-[3px] border-ink bg-paper py-16 sm:py-20" aria-labelledby="architecture-heading">
+        <div class="page-shell">
+          <div class="max-w-4xl">
+            <p class="section-kicker bg-coral">Architecture / Event-driven flow</p>
+            <h2 id="architecture-heading" class="font-display text-[clamp(2.6rem,8vw,5rem)] font-black uppercase leading-[0.9]">
+              Five decoupled stages.
+            </h2>
+            <p class="mt-5 max-w-3xl text-lg font-semibold leading-relaxed">
+              Each service has one responsibility, allowing ingestion, processing, storage, and reporting to scale independently while Pub/Sub absorbs changes in traffic volume.
+            </p>
+          </div>
+
+          <ol class="mt-10 grid gap-6 md:grid-cols-5" aria-label="Log processing architecture">
+            {
+              architecture.map((step, index) => (
+                <li class="relative flex">
+                  <div class:list={["w-full border-[3px] border-ink p-5 shadow-[4px_4px_0_#111]", step.accent]}>
+                    <p class="font-mono text-xs font-bold uppercase">Stage {String(index + 1).padStart(2, "0")}</p>
+                    <h3 class="mt-2 font-display text-xl font-black uppercase">{step.label}</h3>
+                    <p class="mt-1 font-mono text-xs font-bold uppercase">{step.technology}</p>
+                    <p class="mt-4 text-sm font-semibold leading-relaxed">{step.detail}</p>
+                  </div>
+                  {index < architecture.length - 1 && (
+                    <span class="absolute -bottom-6 left-1/2 z-10 -translate-x-1/2 font-mono text-xl font-black md:-right-5 md:bottom-auto md:left-auto md:top-1/2 md:translate-x-0 md:-translate-y-1/2" aria-hidden="true">
+                      -&gt;
+                    </span>
+                  )}
+                </li>
+              ))
+            }
+          </ol>
+        </div>
+      </section>
+
+      <section class="border-b-[3px] border-ink bg-blue py-16 text-white sm:py-20" aria-labelledby="components-heading">
+        <div class="page-shell">
+          <div class="grid gap-6 lg:grid-cols-12 lg:items-end">
+            <div class="lg:col-span-8">
+              <p class="section-kicker bg-yellow text-ink">Component breakdown</p>
+              <h2 id="components-heading" class="font-display text-[clamp(2.6rem,8vw,5rem)] font-black uppercase leading-[0.9]">
+                What each layer owns.
+              </h2>
+            </div>
+            <p class="max-w-xl text-lg font-semibold leading-relaxed lg:col-span-4">
+              Clear service boundaries reduce coupling and make failures easier to isolate, retry, and monitor.
+            </p>
+          </div>
+
+          <div class="mt-10 grid gap-6 lg:grid-cols-2">
+            {
+              components.map((component, index) => (
+                <article class:list={["brutal-card overflow-hidden text-ink", index === components.length - 1 ? "bg-yellow lg:col-span-2" : "bg-white"]}>
+                  <header class="flex items-end justify-between gap-4 border-b-[3px] border-ink bg-coral p-5 sm:p-6">
+                    <div>
+                      <p class="font-mono text-xs font-bold uppercase">Layer {component.number}</p>
+                      <h3 class="mt-1 font-display text-2xl font-black uppercase sm:text-3xl">{component.title}</h3>
+                    </div>
+                    <p class="text-right font-mono text-xs font-bold uppercase">{component.technology}</p>
+                  </header>
+                  <ul class="space-y-3 p-5 sm:p-6">
+                    {component.details.map((detail) => (
+                      <li class="grid grid-cols-[1rem_1fr] gap-3 font-semibold leading-relaxed">
+                        <span class="font-mono font-black text-blue" aria-hidden="true">#</span>
+                        <span>{detail}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </article>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <section class="border-b-[3px] border-ink bg-white py-16 sm:py-20" aria-labelledby="stack-heading">
+        <div class="page-shell">
+          <p class="section-kicker bg-yellow">Technical specifications</p>
+          <h2 id="stack-heading" class="font-display text-[clamp(2.6rem,8vw,5rem)] font-black uppercase leading-[0.9]">
+            The implementation stack.
+          </h2>
+
+          <div class="mt-9 overflow-x-auto border-[3px] border-ink shadow-[6px_6px_0_#111]" tabindex="0">
+            <table class="w-full min-w-[760px] border-collapse text-left">
+              <caption class="sr-only">Technology and configuration used by each system layer</caption>
+              <thead class="bg-ink text-white">
+                <tr>
+                  <th class="p-4 font-mono text-xs uppercase">Layer</th>
+                  <th class="border-l-[3px] border-white p-4 font-mono text-xs uppercase">Technology</th>
+                  <th class="border-l-[3px] border-white p-4 font-mono text-xs uppercase">Configuration</th>
+                </tr>
+              </thead>
+              <tbody>
+                {
+                  stack.map((row, index) => (
+                    <tr class={index % 2 === 0 ? "bg-paper" : "bg-yellow"}>
+                      <th scope="row" class="border-t-[3px] border-ink p-4 font-bold">{row[0]}</th>
+                      <td class="border-l-[3px] border-t-[3px] border-ink p-4 font-semibold">{row[1]}</td>
+                      <td class="border-l-[3px] border-t-[3px] border-ink p-4 font-medium">{row[2]}</td>
+                    </tr>
+                  ))
+                }
+              </tbody>
+            </table>
+          </div>
+
+          <div class="mt-14 grid gap-7 lg:grid-cols-12 lg:items-start">
+            <div class="lg:col-span-4">
+              <p class="font-mono text-xs font-bold uppercase text-blue">Target table / http_requests</p>
+              <h3 class="mt-2 font-display text-3xl font-black uppercase">A schema built for streaming analysis.</h3>
+              <p class="mt-4 font-semibold leading-relaxed">
+                Structured fields replace raw log strings so analysts can group requests, rank endpoints, and aggregate transferred bytes without parsing at query time.
+              </p>
+            </div>
+            <pre class="overflow-x-auto border-[3px] border-ink bg-ink p-5 text-sm leading-relaxed text-white shadow-[6px_6px_0_#ffd91a] lg:col-span-8" tabindex="0"><code>{schemaQuery}</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section class="border-b-[3px] border-ink bg-coral py-16 sm:py-20" aria-labelledby="challenges-heading">
+        <div class="page-shell">
+          <p class="section-kicker bg-white">Implementation journey</p>
+          <h2 id="challenges-heading" class="max-w-5xl font-display text-[clamp(2.6rem,8vw,5rem)] font-black uppercase leading-[0.9]">
+            Production constraints changed the design.
+          </h2>
+
+          <div class="mt-10 grid gap-7 lg:grid-cols-2">
+            <article class="brutal-card bg-white p-6 sm:p-8">
+              <p class="font-mono text-xs font-bold uppercase text-blue">Challenge 01 / Capacity</p>
+              <h3 class="mt-2 font-display text-2xl font-black uppercase">Zone resource pool exhausted.</h3>
+              <p class="mt-5 font-semibold leading-relaxed">
+                Initial Dataflow deployments failed with <code class="border-2 border-ink bg-paper px-1 font-mono text-sm">ZONE_RESOURCE_POOL_EXHAUSTED</code> when the worker pool could not initialize in <code class="font-mono text-sm">us-central1-c</code>.
+              </p>
+              <div class="mt-6 border-l-[5px] border-blue bg-yellow p-5">
+                <p class="font-mono text-xs font-bold uppercase">Resolution</p>
+                <p class="mt-2 font-bold leading-relaxed">
+                  Worker allocation was rerouted explicitly to <code class="font-mono text-sm">us-central1-a</code> with the Dataflow job's zone configuration.
+                </p>
+              </div>
+            </article>
+
+            <article class="brutal-card bg-white p-6 sm:p-8">
+              <p class="font-mono text-xs font-bold uppercase text-blue">Challenge 02 / Data quality</p>
+              <h3 class="mt-2 font-display text-2xl font-black uppercase">Timestamp precision broke inserts.</h3>
+              <p class="mt-5 font-semibold leading-relaxed">
+                BigQuery template validation dropped messages containing fractional microseconds such as <code class="border-2 border-ink bg-paper px-1 font-mono text-sm">.221034Z</code>.
+              </p>
+              <div class="mt-6 border-l-[5px] border-blue bg-yellow p-5">
+                <p class="font-mono text-xs font-bold uppercase">Resolution</p>
+                <p class="mt-2 font-bold leading-relaxed">
+                  The producer now formats every timestamp with <code class="font-mono text-sm">strftime('%Y-%m-%dT%H:%M:%SZ')</code>, aligning events with the expected ISO 8601 format.
+                </p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="border-b-[3px] border-ink bg-paper py-16 sm:py-20" aria-labelledby="queries-heading">
+        <div class="page-shell">
+          <p class="section-kicker bg-blue text-white">Analysis / Verification</p>
+          <h2 id="queries-heading" class="font-display text-[clamp(2.6rem,8vw,5rem)] font-black uppercase leading-[0.9]">
+            Queries that prove the stream.
+          </h2>
+
+          <div class="mt-10 grid gap-8 xl:grid-cols-2">
+            <article>
+              <h3 class="font-display text-2xl font-black uppercase">Traffic and status distribution</h3>
+              <p class="mt-3 font-semibold leading-relaxed">
+                Aggregates request volume and transferred bytes for each HTTP method and response status.
+              </p>
+              <pre class="mt-5 overflow-x-auto border-[3px] border-ink bg-ink p-5 text-sm leading-relaxed text-white shadow-[6px_6px_0_#1d4ed8]" tabindex="0"><code>{trafficQuery}</code></pre>
+            </article>
+
+            <article>
+              <h3 class="font-display text-2xl font-black uppercase">Top requested resources</h3>
+              <p class="mt-3 font-semibold leading-relaxed">
+                Ranks endpoints by request count while measuring their total network payload.
+              </p>
+              <pre class="mt-5 overflow-x-auto border-[3px] border-ink bg-ink p-5 text-sm leading-relaxed text-white shadow-[6px_6px_0_#ff5a4f]" tabindex="0"><code>{resourcesQuery}</code></pre>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="bg-yellow py-16 sm:py-20" aria-labelledby="results-heading">
+        <div class="page-shell">
+          <div class="grid gap-10 lg:grid-cols-12 lg:items-start">
+            <div class="lg:col-span-5">
+              <p class="section-kicker bg-white">Results / Takeaways</p>
+              <h2 id="results-heading" class="font-display text-[clamp(2.6rem,8vw,5rem)] font-black uppercase leading-[0.9]">
+                A scalable pattern, validated end to end.
+              </h2>
+            </div>
+
+            <div class="grid gap-5 lg:col-span-7">
+              <article class="brutal-card bg-white p-6">
+                <h3 class="font-display text-2xl font-black uppercase">High-throughput streaming</h3>
+                <p class="mt-3 font-semibold leading-relaxed">
+                  The system processed tens of thousands of log records while maintaining sub-second movement from ingestion through transformation.
+                </p>
+              </article>
+              <article class="brutal-card bg-coral p-6">
+                <h3 class="font-display text-2xl font-black uppercase">Low operational overhead</h3>
+                <p class="mt-3 font-semibold leading-relaxed">
+                  Managed GCP services handled buffering, compute scaling, storage, and reporting without manually maintained servers.
+                </p>
+              </article>
+              <article class="brutal-card bg-blue p-6 text-white">
+                <h3 class="font-display text-2xl font-black uppercase">System-design proof</h3>
+                <p class="mt-3 font-semibold leading-relaxed">
+                  The implementation connects event-driven architecture concepts to a working cloud pipeline with observable data and recoverable delivery boundaries.
+                </p>
+              </article>
+            </div>
+          </div>
+
+          <div class="mt-14 flex flex-col gap-5 border-t-[3px] border-ink pt-8 sm:flex-row sm:items-center sm:justify-between">
+            <p class="max-w-2xl font-display text-2xl font-black uppercase sm:text-3xl">
+              Continue exploring the rest of the portfolio.
+            </p>
+            <a class="brutal-button brutal-button--blue shrink-0" href={`${assetPath("")}#projects`}>
+              View selected work <span aria-hidden="true">-&gt;</span>
+            </a>
+          </div>
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <Footer />
+</BaseLayout>
