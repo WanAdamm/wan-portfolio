@@ -40,7 +40,7 @@ Final-year Computer Science student with hands-on experience building **agentic 
 - Contributed to an enterprise digital access-management proof of concept using **React, Vite, Tailwind CSS, FastAPI, and REST APIs**, enhancing user onboarding, contextual guidance, and identity-confirmation workflows.
 - Integrated **SAP, Axxon Face Recognition Module, and SQL Server** through REST APIs deployed on **Azure App Service**, enabling interoperability across identity, security, and ERP systems.
 - Built **grounded multi-agent workflows** using **Azure AI Foundry** and **Azure Speech Service** for context-aware, voice-driven access-management interactions.
-- Recorded **230+ contributions across private enterprise repositories**, delivering features through branch-based development, pull requests, peer code reviews, issue tracking, and Agile delivery practices.
+- Recorded **240+ contributions across private enterprise repositories**, delivering features through branch-based development, pull requests, peer code reviews, issue tracking, and Agile delivery practices.
 - Supported an internal knowledge-sharing platform through collaborative development and documentation contributions.
 
 ---
