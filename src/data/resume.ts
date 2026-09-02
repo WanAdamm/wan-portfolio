@@ -166,7 +166,7 @@ export const resumeExperience = {
     "Delivered React, Vite, Tailwind CSS, and FastAPI enhancements across user onboarding, contextual guidance, and identity-confirmation workflows.",
     "Integrated SAP, the Axxon Face Recognition Module, and SQL Server with REST APIs deployed on Azure App Service.",
     "Built grounded multi-agent orchestration workflows with Azure AI Foundry and Azure Speech Service for context-aware, voice-driven interactions.",
-    "Recorded 230+ contributions across private enterprise repositories using branch-based development, pull requests, peer code reviews, issue tracking, and Agile delivery practices.",
+    "Recorded 240+ contributions across private enterprise repositories using branch-based development, pull requests, peer code reviews, issue tracking, and Agile delivery practices.",
     "Supported an internal knowledge-sharing platform through collaborative development and documentation contributions.",
   ],
   technologies: [
@@ -183,7 +183,7 @@ export const resumeExperience = {
     "SQL Server",
     "GitHub Enterprise",
   ],
-  contributionCount: "230+",
+  contributionCount: "240+",
   confidentiality:
     "Private project names and implementation details are generalized to respect enterprise confidentiality.",
   tags: ["ai", "backend", "fullstack"],
