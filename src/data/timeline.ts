@@ -3,9 +3,17 @@ export const timeline = [
     start: { label: "Mar", datetime: "2026-03" },
     end: { label: "Aug 2026", datetime: "2026-08" },
     category: "Industry",
-    title: "IT Trainee | B. Braun",
+    title: "Backend Developer Intern | B. Braun",
     description:
-      "Contributed to an enterprise access-management proof of concept across React, FastAPI, Azure AI workflows, and integrations with SAP, Axxon, and SQL Server. Delivered 240+ contributions through branch-based development, pull requests, peer code reviews, and issue tracking in GitHub Enterprise.",
+      "Designed a FastAPI backend and implemented 20+ RESTful APIs for a physical access-management proof of concept. Integrated Azure OpenAI, Azure Speech Services, SAP, and enterprise databases, and used Snyk and SonarQube to help reduce reported vulnerabilities by 67% (30 to 10 findings).",
+  },
+  {
+    start: { label: "Sep", datetime: "2026-09" },
+    end: { label: "Oct 2026", datetime: "2026-10" },
+    category: "Leadership",
+    title: "Head Facilitator | PPSL Indah Kembara",
+    description:
+      "Led a 10-member facilitator team through a two-week orientation program for 210+ incoming freshmen, overseeing operations, registration, hostel check-in, logistics, student welfare, and campus-wide activity coordination.",
   },
   {
     start: { label: "2024", datetime: "2024" },

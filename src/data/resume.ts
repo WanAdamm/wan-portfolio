@@ -16,14 +16,14 @@ const skill = (
 
 export const resumeProfile = {
   roles: [
-    "AI Solutions Engineer",
-    "AI Developer",
-    "Applied AI & Backend Engineering",
+    "Backend Software Engineer",
+    "AI & Backend Engineering",
+    "Applied AI Integration",
   ],
   phone: "+60 10-837 9125",
   phoneHref: "tel:+60108379125",
   summary:
-    "Final-year Computer Science student with hands-on experience building agentic AI systems and enterprise software. Skilled at connecting AI services to SAP, SQL Server, facial recognition systems, and REST APIs on Azure, with a strong full-stack foundation and experience delivering features through peer-reviewed development workflows.",
+    "Backend Software Engineer specializing in Intelligent Computing with hands-on enterprise experience in the medical technology domain. Proficient in Python, Java, and RESTful API architecture, with experience integrating AI capabilities into scalable backend systems. Proven track record of optimizing backend performance, automating cloud security pipelines, and deploying AI solutions serving 6,000+ users.",
 } as const;
 
 export const resumeFocusOptions = [
@@ -32,35 +32,35 @@ export const resumeFocusOptions = [
     label: "Full profile",
     prompt: "Show everything",
     summary:
-      "A complete view of enterprise AI, backend integration, full-stack delivery, education, and leadership.",
+      "A complete view of backend engineering, applied AI integration, full-stack delivery, education, and leadership.",
   },
   {
     id: "ai",
     label: "AI systems",
-    prompt: "Show enterprise AI",
+    prompt: "Show AI integration",
     summary:
-      "Grounded multi-agent workflows, voice-driven interaction, Azure AI Foundry, and intelligent computing foundations.",
+      "Azure OpenAI, speech and avatar experiences, AI-assisted guidance, facial recognition, and intelligent computing foundations.",
   },
   {
     id: "backend",
     label: "Backend",
     prompt: "Show APIs & integrations",
     summary:
-      "REST APIs, Azure deployment, SQL databases, and interoperability across enterprise systems.",
+      "FastAPI services, 20+ REST APIs, SAP integrations, enterprise databases, and secure deployment.",
   },
   {
     id: "fullstack",
     label: "Full-stack",
     prompt: "Show product delivery",
     summary:
-      "End-to-end web and mobile products spanning interfaces, application state, APIs, and persistence.",
+      "React and Flutter products spanning interfaces, application state, APIs, and persistence.",
   },
   {
     id: "leadership",
     label: "Leadership",
     prompt: "Show team impact",
     summary:
-      "Team leadership, operational ownership, mentoring, and technical event delivery at university scale.",
+      "Head facilitator experience, division leadership, mentoring, and technical event delivery.",
   },
 ] as const satisfies readonly {
   id: ResumeFocus;
@@ -74,11 +74,11 @@ export const resumeSkillGroups = [
     title: "AI & machine learning",
     accent: "yellow",
     skills: [
-      skill("Agentic AI Systems", ["ai"], ["bbraun"]),
-      skill("Multi-Agent Orchestration", ["ai"], ["bbraun"]),
-      skill("Azure AI Foundry", ["ai"], ["bbraun"]),
-      skill("Grounded AI Workflows", ["ai"], ["bbraun"]),
-      skill("Azure Speech Service", ["ai"], ["bbraun"]),
+      skill("Azure OpenAI", ["ai", "backend"], ["bbraun"]),
+      skill("Azure Speech Services", ["ai", "backend"], ["bbraun"]),
+      skill("AI Chatbot Services", ["ai"], ["bbraun"]),
+      skill("Real-Time Speech & Avatar", ["ai"], ["bbraun"]),
+      skill("Facial Recognition", ["ai", "backend"], ["bbraun"]),
       skill("Machine Learning Fundamentals", ["ai"], ["education"]),
       skill("Data Visualization (Tableau)", ["ai"], ["education"]),
     ],
@@ -87,7 +87,7 @@ export const resumeSkillGroups = [
     title: "Programming languages",
     accent: "white",
     skills: [
-      skill("Python", ["ai", "backend"]),
+      skill("Python", ["ai", "backend"], ["bbraun"]),
       skill("Java", ["backend", "fullstack"], ["sejahit"]),
       skill("C++", ["backend"]),
       skill("JavaScript", ["fullstack"], ["sejahit"]),
@@ -99,23 +99,23 @@ export const resumeSkillGroups = [
     title: "Backend & frameworks",
     accent: "coral",
     skills: [
+      skill("FastAPI", ["backend"], ["bbraun"]),
       skill("Node.js", ["backend"]),
-      skill("FastAPI", ["backend", "fullstack"], ["bbraun"]),
       skill("Flask", ["backend"]),
       skill("Django", ["backend"]),
       skill("Java Servlet", ["backend", "fullstack"], ["sejahit"]),
       skill("REST API Design", ["backend"], ["bbraun", "sejahit"]),
+      skill("Authentication & Approval Workflows", ["backend"], ["bbraun"]),
     ],
   },
   {
     title: "Frontend",
     accent: "blue",
     skills: [
-      skill("ReactJS", ["fullstack"], ["bbraun", "sejahit"]),
+      skill("ReactJS", ["fullstack"], ["sejahit"]),
       skill("Flutter", ["fullstack"], ["duitwise"]),
-      skill("Vite", ["fullstack"], ["bbraun", "sejahit"]),
-      skill("TailwindCSS", ["fullstack"], ["bbraun"]),
-      skill("Enterprise Web Components", ["fullstack"], ["bbraun"]),
+      skill("Vite", ["fullstack"], ["sejahit"]),
+      skill("TailwindCSS", ["fullstack"]),
       skill("Bootstrap", ["fullstack"]),
     ],
   },
@@ -124,11 +124,12 @@ export const resumeSkillGroups = [
     accent: "white",
     skills: [
       skill("PostgreSQL", ["backend", "fullstack"], ["sejahit"]),
-      skill("SQL Server", ["backend"], ["bbraun"]),
+      skill("Enterprise Databases", ["backend"], ["bbraun"]),
       skill("Microsoft Azure", ["ai", "backend"], ["bbraun"]),
       skill("Google Cloud Platform", ["backend"]),
       skill("Docker", ["backend"]),
-      skill("Git", ["backend", "fullstack"], ["sejahit"]),
+      skill("Git", ["backend", "fullstack"], ["bbraun"]),
+      skill("npm", ["fullstack"], ["sejahit"]),
     ],
   },
   {
@@ -136,21 +137,21 @@ export const resumeSkillGroups = [
     accent: "yellow",
     skills: [
       skill("SAP", ["backend"], ["bbraun"]),
-      skill("Axxon Face Recognition", ["backend"], ["bbraun"]),
-      skill("Azure App Service", ["backend"], ["bbraun"]),
       skill("System Interoperability", ["backend"], ["bbraun"]),
+      skill("Door Access Retrieval", ["backend"], ["bbraun"]),
+      skill("Automated Approval Routing", ["backend"], ["bbraun"]),
     ],
   },
   {
-    title: "Engineering practices",
+    title: "Security & engineering practices",
     accent: "coral",
     skills: [
-      skill("GitHub Enterprise", ["backend", "fullstack"], ["bbraun"]),
-      skill("Branch-Based Development", ["backend", "fullstack"], ["bbraun"]),
-      skill("Pull Requests", ["backend", "fullstack"], ["bbraun"]),
-      skill("Code Reviews", ["backend", "fullstack"], ["bbraun"]),
-      skill("Issue Tracking", ["backend", "fullstack"], ["bbraun"]),
-      skill("Agile Delivery", ["backend", "fullstack"], ["bbraun"]),
+      skill("API Documentation", ["backend"], ["bbraun"]),
+      skill("Testing", ["backend"], ["bbraun"]),
+      skill("Deployment", ["backend"], ["bbraun"]),
+      skill("Snyk", ["backend"], ["bbraun"]),
+      skill("SonarQube", ["backend"], ["bbraun"]),
+      skill("Security Remediation", ["backend"], ["bbraun"]),
     ],
   },
 ] as const;
@@ -158,72 +159,70 @@ export const resumeSkillGroups = [
 export const resumeExperience = {
   id: "bbraun",
   period: "March 2026 - August 2026",
-  role: "IT Trainee",
+  role: "Backend Developer Intern",
   organization: "B. Braun Medical Industries",
   summary:
-    "Contributed across frontend, backend, and AI workflows for an enterprise digital access-management proof of concept.",
+    "Designed and developed a FastAPI backend for a physical access-management proof of concept, shipping 20+ RESTful APIs and integrating AI, SAP, and enterprise database services.",
   details: [
-    "Delivered React, Vite, Tailwind CSS, and FastAPI enhancements across user onboarding, contextual guidance, and identity-confirmation workflows.",
-    "Integrated SAP, the Axxon Face Recognition Module, and SQL Server with REST APIs deployed on Azure App Service.",
-    "Built grounded multi-agent orchestration workflows with Azure AI Foundry and Azure Speech Service for context-aware, voice-driven interactions.",
-    "Recorded 240+ contributions across private enterprise repositories using branch-based development, pull requests, peer code reviews, issue tracking, and Agile delivery practices.",
-    "Supported an internal knowledge-sharing platform through collaborative development and documentation contributions.",
+    "Designed and developed a FastAPI backend for a physical access-management proof of concept supporting access requests, status tracking, and door discovery workflows.",
+    "Implemented 20+ RESTful APIs covering authentication, approval workflows, SAP integrations, AI chatbot services, real-time speech/avatar functionality, and facial recognition capabilities.",
+    "Integrated Azure OpenAI, Azure Speech Services, SAP systems, and enterprise databases to enable AI-assisted user guidance, door access retrieval, and automated approval routing.",
+    "Collaborated on backend architecture, API documentation, testing, and deployment, contributing over 240 code commits across multiple application modules.",
+    "Leveraged Snyk and SonarQube code analysis tools to identify and remediate security and code-quality issues, contributing to a 67% reduction in reported vulnerabilities (30 to 10 findings).",
   ],
   technologies: [
-    "React",
-    "Vite",
-    "Tailwind CSS",
     "FastAPI",
-    "Azure AI Foundry",
-    "Azure Speech Service",
-    "Azure App Service",
     "REST APIs",
+    "Azure OpenAI",
+    "Azure Speech Services",
     "SAP",
-    "Axxon",
-    "SQL Server",
-    "GitHub Enterprise",
+    "Enterprise Databases",
+    "Facial Recognition",
+    "Python",
+    "Snyk",
+    "SonarQube",
   ],
   contributionCount: "240+",
   confidentiality:
     "Private project names and implementation details are generalized to respect enterprise confidentiality.",
-  tags: ["ai", "backend", "fullstack"],
+  tags: ["ai", "backend"],
 } as const;
 
 export const systemLayers = [
   {
-    id: "interaction",
-    label: "Product experience",
-    technology: "React / Vite / Tailwind CSS",
+    id: "api",
+    label: "API surface",
+    technology: "FastAPI / REST",
     contribution:
-      "Enhanced onboarding, contextual guidance, and identity-confirmation workflows.",
+      "Built the backend for access requests, status tracking, and door discovery workflows.",
   },
   {
-    id: "speech",
-    label: "Speech layer",
-    technology: "Azure Speech Service",
+    id: "identity",
+    label: "Identity & access",
+    technology: "Authentication / approvals",
     contribution:
-      "Connected spoken interaction to the grounded workflow experience.",
+      "Implemented authentication, approval routing, and facial recognition across 20+ RESTful APIs.",
   },
   {
-    id: "orchestration",
-    label: "Orchestration",
-    technology: "Azure AI Foundry",
+    id: "ai",
+    label: "AI services",
+    technology: "Azure OpenAI / Speech",
     contribution:
-      "Built grounded multi-agent workflows that coordinated context and decisions.",
-  },
-  {
-    id: "backend",
-    label: "Backend",
-    technology: "FastAPI / REST / App Service",
-    contribution:
-      "Designed and deployed API components that connected AI workflows to business systems.",
+      "Added AI chatbot, real-time speech/avatar, and AI-assisted guidance services.",
   },
   {
     id: "enterprise",
     label: "Enterprise systems",
-    technology: "SAP / Axxon / SQL Server",
+    technology: "SAP / enterprise databases",
     contribution:
-      "Integrated identity, security, facial recognition, and ERP data across three enterprise technologies.",
+      "Connected access workflows to SAP and enterprise data for automated approval routing.",
+  },
+  {
+    id: "quality",
+    label: "Security & quality",
+    technology: "Snyk / SonarQube",
+    contribution:
+      "Remediated security and code-quality findings, reducing reported vulnerabilities by 67%.",
   },
 ] as const;
 
@@ -231,15 +230,15 @@ export const resumeProjects = [
   {
     id: "sejahit",
     title: "SeJahit",
-    subtitle: "Full-Stack Tailoring Service E-Commerce Platform",
+    subtitle: "Full-Stack Used Clothing E-Commerce Platform",
     summary:
-      "Delivered an end-to-end e-commerce platform with a React and Vite client, Java Servlet backend on Tomcat, and PostgreSQL persistence.",
+      "Built a full-stack used clothing platform with a ReactJS and Vite client, Java Servlet backend, and PostgreSQL persistence.",
     details: [
       "Built the ReactJS and Vite frontend and Java Servlet backend for complete client-server delivery.",
-      "Developed a PostgreSQL-backed REST API for item management, form handling, and validation.",
-      "Implemented UI design, application state, routing, and backend integration.",
+      "Developed the PostgreSQL-backed data layer and REST API for item management, form handling, and validation.",
+      "Delivered UI design, routing, state management, and backend integration.",
     ],
-    technologies: ["ReactJS", "Vite", "Java Servlet", "Tomcat", "PostgreSQL"],
+    technologies: ["ReactJS", "Vite", "Java Servlet", "PostgreSQL", "REST API"],
     href: "https://github.com/WanAdamm/SeJahit-Bundle-E-Commerce-Website",
     linkLabel: "View source",
     tags: ["backend", "fullstack"],
@@ -249,14 +248,14 @@ export const resumeProjects = [
     title: "DuitWise",
     subtitle: "Cross-Platform Personal Finance App",
     summary:
-      "Built a Flutter mobile application with a modular, widget-driven architecture and structured state management for Android and iOS.",
+      "Built a cross-platform Flutter finance application with a modular, widget-driven architecture and mobile-first user flows.",
     details: [
-      "Delivered consistent cross-platform behavior across Android and iOS.",
-      "Used modular widgets and structured state management to support maintainability and feature growth.",
-      "Designed mobile-first navigation and performance-conscious user flows.",
+      "Delivered consistent performance across Android and iOS.",
+      "Implemented modular widgets and structured state management for scalability and maintainability.",
+      "Designed mobile-first navigation and user flows to improve usability and performance.",
     ],
     technologies: ["Flutter", "Cross-Platform", "State Management"],
-    href: "https://github.com/WanAdamm/DuitWise-CAT304/releases/tag/v2.0.0",
+    href: "https://github.com/WanAdamm/DuitWise-CAT304/releases/tag/v2.1.1",
     linkLabel: "View release",
     tags: ["fullstack"],
   },
@@ -265,36 +264,51 @@ export const resumeProjects = [
 export const resumeEducation = {
   id: "education",
   institution: "Universiti Sains Malaysia",
-  qualification: "Bachelor of Computer Science (Intelligent Computing), with Honours",
+  qualification: "Bachelor of Computer Science (Intelligent Computing) with Honors",
   period: "Expected graduation: October 2027",
   cgpa: "3.75 / 4.00",
-  distinction: "Dean's List, Semester 1 - Present",
+  distinction: "Dean's List, Sem 1 - Present",
   coursework: [
-    "Programming Methodology & Data Structures",
-    "Design & Analysis of Algorithms",
-    "Database Organization & Design",
-    "Machine Learning and Computational Intelligence",
+    "Data Structures",
+    "Algorithms",
+    "Database Design",
+    "Machine Learning",
+    "Computational Intelligence",
     "Operating Systems",
   ],
   certifications: [
-    "Introduction to Data Visualization by Tableau for the Semiconductor Industry",
-    "Introduction to Machine Learning for the Semiconductor Industry",
+    "Tableau Data Visualization workshop for the Semiconductor Industry",
+    "Machine Learning workshop for the Semiconductor Industry",
   ],
   tags: ["ai", "backend", "fullstack"],
 } as const;
 
 export const resumeLeadership = [
   {
+    id: "ppsl",
+    role: "Penghulu (Head Facilitator)",
+    organization: "Program Pembimbing Siswa Lestari (PPSL) Indah Kembara",
+    period: "September 2026 - October 2026",
+    summary:
+      "Led a 10-member facilitator team through a two-week orientation program for 210+ incoming freshmen.",
+    details: [
+      "Led a 10-member facilitator team throughout a two-week university orientation program, overseeing daily operations, logistics, student welfare, and program execution for 210+ incoming freshmen at Desasiswa Indah Kembara.",
+      "Streamlined freshman registration and hostel check-in workflows by coordinating student movement, facilitator assignments, and placement processes to reduce congestion and maintain efficient operations.",
+      "Directed large-scale student movement and activity logistics across campus, ensuring schedule adherence, effective crowd management, and smooth execution of consecutive orientation activities.",
+      "Managed evening programming, safety protocols, and welfare response while serving as a key communication link between university administrators, facilitators, and 210+ incoming students.",
+    ],
+    tags: ["leadership"],
+  },
+  {
     id: "mpdik",
     role: "Executive Committee Member",
     organization: "MPDIK",
     period: "October 2023 - October 2025",
     summary:
-      "Led an eight-member division while owning logistics, budgets, stakeholder communication, and delivery for university-scale events.",
+      "Led an eight-member division while managing logistics, budgets, and stakeholder coordination for university-scale programs.",
     details: [
-      "Improved operational turnaround and team coordination while delivering events for 30-50 participants.",
-      "Owned end-to-end logistics, budgeting, and stakeholder communication across high-pressure programs.",
-      "Mentored committee members to strengthen the junior talent pipeline and team reliability.",
+      "Led a division of 8 members while managing logistics, budgeting, and stakeholder coordination for university-scale programs.",
+      "Mentored junior committee members and improved team reliability, execution speed, and operational turnaround.",
     ],
     tags: ["leadership"],
   },
@@ -306,9 +320,8 @@ export const resumeLeadership = [
     summary:
       "Delivered technical and operational support for flagship events including the international VHACK hackathon and PIXEL.",
     details: [
-      "Provided full-cycle operational oversight for events serving hundreds of participants.",
-      "Directed logistics, AV systems, and venue operations to reduce setup downtime.",
-      "Contributed to the Technical Division and maintained key features of the society website.",
+      "Executed flagship events including VHACK and PIXEL, supporting large-scale participant operations and technical coordination.",
+      "Directed logistics, AV systems, venue operations, and website-related contributions under the society's Technical Division.",
     ],
     tags: ["leadership"],
   },

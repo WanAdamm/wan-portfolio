@@ -18,15 +18,15 @@ export const projects: readonly Project[] = [
   {
     title: "SeJahit",
     description:
-      "Architected an end-to-end tailoring service platform with a React/Vite client, Java Servlet REST backend on Tomcat, and PostgreSQL persistence. Implemented item workflows, validated form handling, routing, state management, and API integration.",
-    stack: ["React", "Vite", "Java Servlet", "Tomcat", "PostgreSQL"],
+      "Built a full-stack used clothing e-commerce platform with a ReactJS and Vite client, Java Servlet REST backend, and PostgreSQL persistence. Delivered UI design, routing, state management, form handling, validation, and API integration.",
+    stack: ["ReactJS", "Vite", "Java Servlet", "PostgreSQL", "REST API"],
     image: "images/sejahit.png",
     imageAlt:
       "SeJahit landing page featuring an editorial second-hand clothing rail and a Uniqlo shirt",
     imageWidth: 1920,
     imageHeight: 947,
     size: "large",
-    github: "https://github.com/WanAdamm/SeJahit-Docker",
+    github: "https://github.com/WanAdamm/SeJahit-Bundle-E-Commerce-Website",
   },
   {
     title: "Visit Penang",
@@ -53,7 +53,7 @@ export const projects: readonly Project[] = [
     imageWidth: 1918,
     imageHeight: 946,
     size: "wide",
-    github: "https://github.com/WanAdamm/DuitWise-CAT304/releases/tag/v2.0.0",
+    github: "https://github.com/WanAdamm/DuitWise-CAT304/releases/tag/v2.1.1",
   },
   {
     title: "NASA Log Streaming",

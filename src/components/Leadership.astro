@@ -3,15 +3,21 @@ import Reveal from "./Reveal.astro";
 
 const experiences = [
   {
+    title: "PPSL Indah Kembara",
+    description:
+      "Led a 10-member facilitator team through a two-week orientation program for 210+ incoming freshmen, coordinating daily operations, registration, hostel check-in, logistics, and student welfare.",
+    tags: ["Team leadership", "Large-scale operations"],
+  },
+  {
     title: "MPDIK Leadership",
     description:
-      "Led an 8-member division across logistics, budgeting, stakeholder communication, and mentoring, improving coordination for university programs with 30 to 50 participants.",
+      "Led an 8-member division across logistics, budgeting, stakeholder communication, and mentoring, improving coordination for university-scale programs.",
     tags: ["Team leadership", "Resource management"],
   },
   {
     title: "Computer Science Society",
     description:
-      "Directed logistics, AV systems, and venue operations for flagship events including international hackathon VHACK and PIXEL, supporting hundreds of participants while contributing to the society's website.",
+      "Directed logistics, AV systems, and venue operations for flagship events including international hackathon VHACK and PIXEL, supporting large-scale participant operations while contributing to the society's website.",
     tags: ["Technical operations", "Event execution"],
   },
 ];
@@ -31,11 +37,20 @@ const experiences = [
       </p>
     </div>
 
-    <div class="grid gap-8 md:grid-cols-2 md:pb-8">
+    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
       {
         experiences.map((item, index) => (
-          <article class:list={["brutal-card min-w-0 overflow-hidden", index === 1 && "md:translate-y-8"]}>
-            <div class:list={["border-b-[3px] border-ink p-5", index === 0 ? "bg-yellow" : "bg-blue text-white"]}>
+          <article class="brutal-card min-w-0 overflow-hidden">
+            <div
+              class:list={[
+                "border-b-[3px] border-ink p-5",
+                index === 0
+                  ? "bg-yellow"
+                  : index === 1
+                    ? "bg-blue text-white"
+                    : "bg-ink text-white",
+              ]}
+            >
               <p class="font-mono text-xs font-bold uppercase tracking-wider">
                 Leadership record {String(index + 1).padStart(2, "0")}
               </p>

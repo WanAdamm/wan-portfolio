@@ -5,9 +5,9 @@ export const assetPath = (path: string) =>
 
 export const site = {
   name: "Wan Muhammad Adam",
-  title: "Wan Muhammad Adam | Software Engineer Portfolio",
+  title: "Wan Muhammad Adam | Backend & AI Engineer Portfolio",
   description:
-    "Wan Muhammad Adam is a final-year Computer Science student building AI, backend, automation, and full-stack systems. Available for full-time roles from August 2027.",
+    "Wan Muhammad Adam is a Backend Software Engineer specializing in Intelligent Computing, with enterprise experience building FastAPI services, REST APIs, and AI integrations. Available for full-time roles from October 2027.",
   email: "wanadamworkmail@gmail.com",
   github: "https://github.com/WanAdamm",
   linkedin: "https://www.linkedin.com/in/wan-muhammad-adam-wan-mohd-fauzi/",
@@ -15,9 +15,9 @@ export const site = {
   resumePageUrl: assetPath("resume/"),
   resumeUrl: assetPath("Wan Muhammad Adam Resume.pdf"),
   availability: {
-    label: "Available from August 2027",
+    label: "Available from October 2027",
     detail:
-      "Open to full-time software engineering roles from August 2027, after final examinations conclude in July.",
+      "Open to full-time backend and AI engineering roles from October 2027, following graduation.",
   },
 } as const;
 
